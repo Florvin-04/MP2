@@ -3,24 +3,23 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 // import './App.css'
 
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Product from "./Pages/Product";
 import Cart from "./Pages/Cart";
 import Plant from "./Pages/Plant";
-import { useGlobalContext } from "./AppContext/AppContext";
+import Login from "./Pages/Login/Login";
+import Navbar from "./components/Navbar";
 
 function App() {
-  // const [count, setCount] = useState(0);
-
-  const { getCartItemNumber } = useGlobalContext();
-
   return (
     <>
-      <Link to="/product">Product</Link>
-      <Link to="/cart">
-        Cart<sup>{`${getCartItemNumber() ? getCartItemNumber() : ""}`}</sup>
-      </Link>
+      <Navbar />
       <Routes>
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
         <Route
           path="/product"
           element={<Product />}
