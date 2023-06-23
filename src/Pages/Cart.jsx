@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../AppContext/AppContext";
 
 function Cart() {
   const { plants, cart, addToCart, removeToCart, updateCartValue, getTotalAmount } =
     useGlobalContext();
+
+  const navigate = useNavigate();
 
   // const [cartValue, setCartValue] = useState({
   //   cartInput: 0,
@@ -38,6 +41,7 @@ function Cart() {
                 onChange={(e) => updateCartValue(Number(e.target.value), plant.id)}
               />
               <button onClick={() => removeToCart(plant.id)}>-</button>
+              <span>SubTotal {cart[plant.id].itemCount * plant.price}</span>
             </div>
           );
         }
@@ -46,6 +50,13 @@ function Cart() {
       {getTotalAmount() ? (
         <div>
           <p>Total Amount {getTotalAmount()}</p>
+          <button
+            onClick={() => {
+              navigate("/checkout");
+            }}
+          >
+            Checkout
+          </button>
         </div>
       ) : (
         <p>No Item</p>

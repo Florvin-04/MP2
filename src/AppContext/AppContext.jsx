@@ -17,7 +17,16 @@ export const AppProvider = ({ children }) => {
 
   const [cart, setCart] = useState(getDefaultCart());
 
-  // console.log(cart);
+  // const getCartValue = () => {
+  //   return plants.map((plant) => {
+  //     if (cart[plant.id].itemCount !== 0) {
+  //       return `${plant.name} ${plant.id}`;
+  //     }
+  //   });
+  // };
+
+  // console.log(getCartValue());
+
   const getCartItemNumber = () => {
     let total = 0;
     for (let keyCart in cart) {
@@ -37,10 +46,6 @@ export const AppProvider = ({ children }) => {
 
     return total;
   };
-
-  // getTotalAmount();
-
-  // console.log(getTotalAmount());
 
   const addToCart = (itemId) => {
     setCart((prevData) => ({
@@ -64,7 +69,7 @@ export const AppProvider = ({ children }) => {
 
   const updateCartValue = (amount, itemId) => {
     if (isNaN(amount)) return;
-    console.log(amount + 10);
+    // console.log(amount + 10);
     let updatedAvailability;
     let product = cart[itemId];
 

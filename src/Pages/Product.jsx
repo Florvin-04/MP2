@@ -7,7 +7,7 @@ function Product() {
   const { plants } = useGlobalContext();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   function nav() {
     navigate("/login", {

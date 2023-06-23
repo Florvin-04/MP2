@@ -20,6 +20,7 @@ function Login() {
   function handleChange(e) {
     const target = e.target;
     const { name, value, type, checked } = target;
+    setFormErrors(null);
 
     setFormState((prevData) => ({
       ...prevData,
@@ -27,7 +28,7 @@ function Login() {
     }));
   }
 
-  console.log(formErrors);
+  // console.log(formErrors);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -35,13 +36,8 @@ function Login() {
     let errors = {};
     let isValid = true;
 
-    if (formState.userName.trim() == "") {
-      errors.text = "Text field is required.";
-      isValid = false;
-    }
-
     if (formState.userName != "user" && formState.password != "pass") {
-      errors.both = "both wrong.";
+      errors.both = "Incorrect Username and Password.";
       isValid = false;
     }
 
@@ -50,7 +46,7 @@ function Login() {
     if (isValid) {
       // Submit the form
       navigate(location.state?.prevUrl || "/product");
-      console.log("Form submitted:", formState);
+      // console.log("Form submitted:", formState);
     }
   }
 
@@ -116,6 +112,7 @@ function Login() {
             alt=""
           /> */}
         </div>
+        {formErrors?.both && <p className={LoginCSS["userLoginErrorMessage"]}>{formErrors.both}</p>}
         <a
           href="#"
           id={LoginCSS["forgot-pass"]}

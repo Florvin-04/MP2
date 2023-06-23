@@ -9,6 +9,7 @@ import Cart from "./Pages/Cart";
 import Plant from "./Pages/Plant";
 import Login from "./Pages/Login/Login";
 import Navbar from "./components/Navbar";
+import Checkout from "./Pages/Checkout";
 
 function App() {
   return (
@@ -18,6 +19,11 @@ function App() {
         <Route
           path="/login"
           element={<Login />}
+        />
+
+        <Route
+          path="/checkout"
+          element={<Checkout />}
         />
 
         <Route
