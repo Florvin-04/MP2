@@ -1,0 +1,39 @@
+.dropdown__region {
+  margin-top: 3rem;
+  position: relative;
+  /* // outline: 1px solid red;
+    // width: 10rem; */
+  display: inline-block;
+}
+.filter__region {
+  padding: 1em 5em 1em 1em;
+  text-align: left;
+  /* background-color: hsl(var(--Primary-100)) ;
+  border-color: hsl(var(--Primary-100));
+  color: hsl(var(--Primary-300)); */
+  background-color: red;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  width: 20rem;
+}
+.region__list {
+  margin-top: 0.4rem;
+  padding-block: 1rem;
+  padding-left: 1rem;
+  /* color: hsl(var(--Primary-300));
+  background-color: hsl(var(--Primary-100));
+  border-color: hsl(var(--Primary-100));
+  color: hsl(var(--Primary-300)); */
+  background-color: red;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  position: absolute;
+  width: 100%;
+  display: none;
+}
+
+.region__list.active{
+    display: block;
+
+}

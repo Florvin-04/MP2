@@ -17,7 +17,7 @@ function PlantCard(plant) {
               alt="#"
             />
           </div>
-          <div className="card_info">{plant.name}</div>
+          <div className="card_info">{plant.name} {plant.family}</div>
           <p>{cart[plant.id].availability}</p>
         </div>
       </Link>

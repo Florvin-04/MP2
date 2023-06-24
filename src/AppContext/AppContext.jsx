@@ -1,6 +1,7 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { debounce } from "lodash";
 import { PLANTS } from "../data";
+const categories = ["All", ...new Set(PLANTS.map((plant) => plant.family))];
 
 export const AppContext = createContext(null);
 
@@ -13,9 +14,12 @@ const getDefaultCart = () => {
 };
 
 export const AppProvider = ({ children }) => {
-  const [plants, setPlants] = useState(PLANTS);
+  const [plants, setPlants] = useState([]);
 
   const [cart, setCart] = useState(getDefaultCart());
+  const [filterByCategory, setFilterByCategory] = useState("All");
+  const [filterByName, setFilterByName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // const getCartValue = () => {
   //   return plants.map((plant) => {
@@ -26,6 +30,39 @@ export const AppProvider = ({ children }) => {
   // };
 
   // console.log(getCartValue());
+
+  const filter = () => {
+    setLoading(true);
+    let updatedList = [...PLANTS];
+
+    if (filterByCategory == "All") {
+      updatedList = updatedList.filter((plant) =>
+        plant.name.toLowerCase().includes(filterByName.toLocaleLowerCase())
+      );
+
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+
+      setPlants(updatedList);
+    } else {
+      updatedList = updatedList.filter(
+        (plant) =>
+          plant.family.toLowerCase() === filterByCategory.toLowerCase() &&
+          plant.name.toLowerCase().includes(filterByName.toLocaleLowerCase())
+      );
+
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+
+      setPlants(updatedList);
+    }
+  };
+
+  useEffect(() => {
+    filter();
+  }, [filterByName, filterByCategory]);
 
   const getCartItemNumber = () => {
     let total = 0;
@@ -51,8 +88,9 @@ export const AppProvider = ({ children }) => {
     setCart((prevData) => ({
       ...prevData,
       [itemId]: {
+        ...prevData[itemId],
         itemCount: prevData[itemId].itemCount + 1,
-        availability: prevData[itemId].availability - 1,
+        // availability: prevData[itemId].availability - 1,
       },
     }));
   };
@@ -61,8 +99,9 @@ export const AppProvider = ({ children }) => {
     setCart((prevData) => ({
       ...prevData,
       [itemId]: {
+        ...prevData[itemId],
         itemCount: prevData[itemId].itemCount - 1,
-        availability: prevData[itemId].availability + 1,
+        // availability: prevData[itemId].availability + 1,
       },
     }));
   };
@@ -94,12 +133,20 @@ export const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         plants,
+        setPlants,
         cart,
+        setCart,
         addToCart,
         removeToCart,
         updateCartValue,
         getCartItemNumber,
         getTotalAmount,
+        filterByName,
+        setFilterByName,
+        categories,
+        setFilterByCategory,
+        loading,
+        setLoading,
         // setSearchCountry,
         // searchByRegion,
         // setSearchByRegion,

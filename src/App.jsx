@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 // import './App.css'
 
 import { Route, Routes } from "react-router-dom";
-import Product from "./Pages/Product";
+import Product from "./Pages//Product/Product";
 import Cart from "./Pages/Cart";
 import Plant from "./Pages/Plant";
 import Login from "./Pages/Login/Login";

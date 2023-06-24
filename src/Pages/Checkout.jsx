@@ -1,14 +1,16 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useGlobalContext } from "../AppContext/AppContext";
 
 function Checkout() {
-  const { plants, cart, getTotalAmount } = useGlobalContext();
+  const navigate = useNavigate();
+  const { plants, cart, getTotalAmount, setPlants, setCart } = useGlobalContext();
   const modalRef = useRef();
   const [userData, setUserData] = useState(null);
-//   console.log(userData?.firstName);
+  //   console.log(userData?.firstName);
   const schema = yup.object().shape({
     // firstName: yup.number().typeError('Age must be a number').required("First Name Required!"),
     firstName: yup.string().required("First Name Required!"),
@@ -29,6 +31,24 @@ function Checkout() {
     // console.log(data);
     setUserData(data);
     modalRef.current.close();
+  }
+
+  function submitOrder() {
+    console.log("order Submit");
+
+    plants.map((plant) => {
+      if (cart[plant.id].itemCount !== 0) {
+        setCart((prevData) => ({
+          ...prevData,
+          [plant.id]: {
+            itemCount: 0,
+            availability: prevData[plant.id].availability - prevData[plant.id].itemCount,
+          },
+        }));
+      }
+    });
+
+    navigate("/product");
   }
 
   return (
@@ -68,7 +88,7 @@ function Checkout() {
         </form>
       </dialog>
 
-        <p>{userData?.firstName}</p>
+      <p>{userData?.firstName}</p>
       {plants.map((plant) => {
         if (cart[plant.id].itemCount !== 0) {
           return (
@@ -83,7 +103,7 @@ function Checkout() {
         }
       })}
       <p>Total Amount: {getTotalAmount()}</p>
-      <button>Place Order</button>
+      <button onClick={submitOrder}>Place Order</button>
     </div>
   );
 }
