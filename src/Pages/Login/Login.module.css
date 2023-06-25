@@ -1,22 +1,3 @@
-*:not(dialog) {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --primary: #157afe;
-  --secondary: #808080;
-  --bg-light: #fff;
-}
-
-body {
-  font-family: "Inter", sans-serif;
-  background: #fafafa;
-}
-
-
-
 .portal {
   display: grid;
   place-items: center;
@@ -198,6 +179,6 @@ button {
   /* background-color: red; */
 }
 
-.portal .userLoginErrorMessage{
+.portal .userLoginErrorMessage {
   color: red;
 }

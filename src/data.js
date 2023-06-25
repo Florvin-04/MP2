@@ -1,3 +1,5 @@
+import jadeVine from "../public/image/JadeVine.webp";
+
 export const PLANTS = [
   {
     id: 1,
@@ -8,6 +10,7 @@ export const PLANTS = [
     family: "Indigenous",
     rarity: "Rare",
     availability: 100,
+    img: jadeVine,
   },
   {
     id: 2,
