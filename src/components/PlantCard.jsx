@@ -27,6 +27,7 @@ function PlantCard(plant) {
       >
         add to cart {cart[plant.id].itemCount !== 0 && `(${cart[plant.id].itemCount})`}
       </button>
+      
     </div>
   );
 }

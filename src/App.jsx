@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 // import './App.css'
 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { useGlobalContext } from "./AppContext/AppContext";
 import Product from "./Pages//Product/Product";
 import Cart from "./Pages/Cart";
 import Plant from "./Pages/Plant";
@@ -12,6 +13,24 @@ import Navbar from "./components/Navbar";
 import Checkout from "./Pages/Checkout";
 
 function App() {
+  const { setCheckout } = useGlobalContext();
+  const location = useLocation();
+  const navigate = useNavigate();
+  // console.log(location.pathname);
+
+  useEffect(() => {
+    if (
+      (location.state?.prevLocation == "/cart" && location.pathname !== "/checkout") ||
+      location.state?.prevLocation == "/checkout"
+    ) {
+      setTimeout(() => {
+        navigate(location.pathname, { state: null });
+      }, 0);
+      setCheckout([]);
+      // console.log("clear");
+    }
+  }, [location]);
+
   return (
     <>
       <Navbar />

@@ -3,8 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../AppContext/AppContext";
 
 function Cart() {
-  const { plants, cart, addToCart, removeToCart, updateCartValue, getTotalAmount } =
-    useGlobalContext();
+  const {
+    plants,
+    cart,
+    addToCart,
+    removeToCart,
+    updateCartValue,
+    getTotalAmount,
+    setCheckout,
+    checkout,
+  } = useGlobalContext();
 
   const navigate = useNavigate();
 
@@ -25,12 +33,33 @@ function Cart() {
 
   // console.log(cartValue);
 
+  function handleChange(e, id) {
+    const target = e.target;
+    const { name, checked, type, value } = target;
+
+    const updateList =
+      checked && type == "checkbox" ? [...checkout, id] : checkout.filter((ids) => ids !== id);
+
+    setCheckout(updateList);
+  }
+
   return (
     <div>
       {plants.map((plant) => {
         if (cart[plant.id].itemCount !== 0) {
           return (
-            <div key={plant.id}>
+            <label
+              htmlFor={plant.name}
+              key={plant.id}
+              style={{ backgroundColor: "red" }}
+            >
+              <input
+                type="checkbox"
+                name={plant.id}
+                id={plant.name}
+                checked={checkout.includes(plant.id)}
+                onChange={(e) => handleChange(e, plant.id)}
+              />
               <p>{plant.name}</p>
               <button onClick={(e) => addToCart(plant.id)}>+</button>
               <input
@@ -42,7 +71,7 @@ function Cart() {
               />
               <button onClick={() => removeToCart(plant.id)}>-</button>
               <span>SubTotal {cart[plant.id].itemCount * plant.price}</span>
-            </div>
+            </label>
           );
         }
       })}

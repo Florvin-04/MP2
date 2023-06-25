@@ -17,6 +17,7 @@ export const AppProvider = ({ children }) => {
   const [plants, setPlants] = useState([]);
 
   const [cart, setCart] = useState(getDefaultCart());
+  const [checkout, setCheckout] = useState([]);
   const [filterByCategory, setFilterByCategory] = useState("All");
   const [filterByName, setFilterByName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -77,14 +78,26 @@ export const AppProvider = ({ children }) => {
     for (let keyCart in cart) {
       if (cart[keyCart].itemCount != 0) {
         let item = plants.find((plant) => plant.id == keyCart);
-        total += cart[keyCart].itemCount * item.price;
+
+        if (checkout.includes(item.id)) {
+          total += cart[keyCart].itemCount * item.price;
+        }
       }
     }
 
     return total;
   };
 
+  // useEffect(() => {
+  //   getTotalAmount();
+  //   console.log(getTotalAmount());
+  // }, [checkout]);
+
   const addToCart = (itemId) => {
+    if (cart[itemId].availability <= cart[itemId].itemCount) {
+      return;
+    }
+
     setCart((prevData) => ({
       ...prevData,
       [itemId]: {
@@ -93,6 +106,20 @@ export const AppProvider = ({ children }) => {
         // availability: prevData[itemId].availability - 1,
       },
     }));
+  };
+
+  const buyNow = (itemId) => {
+    setCart((prevData) => ({
+      ...prevData,
+      [itemId]: {
+        ...prevData[itemId],
+        itemCount: prevData[itemId].itemCount == 0 ? 1 : prevData[itemId].itemCount,
+      },
+    }));
+
+    setCheckout([...checkout, itemId]);
+
+    // console.log(cart);
   };
 
   const removeToCart = (itemId) => {
@@ -108,17 +135,21 @@ export const AppProvider = ({ children }) => {
 
   const updateCartValue = (amount, itemId) => {
     if (isNaN(amount)) return;
-    // console.log(amount + 10);
-    let updatedAvailability;
-    let product = cart[itemId];
 
-    if (amount > product.itemCount) {
-      // updatedAvailability = product.availability - (amount - product.itemCount);
-    } else if (amount < product.itemCount) {
-      // updatedAvailability = product.availability + (amount + product.itemCount);
-    } else {
-      console.log("neutral");
+    if (amount <= 0) {
+      prompt("sure");
     }
+    // // console.log(amount + 10);
+    // let updatedAvailability;
+    // let product = cart[itemId];
+
+    // if (amount > product.itemCount) {
+    //   // updatedAvailability = product.availability - (amount - product.itemCount);
+    // } else if (amount < product.itemCount) {
+    //   // updatedAvailability = product.availability + (amount + product.itemCount);
+    // } else {
+    //   console.log("neutral");
+    // }
 
     setCart((prevData) => ({
       ...prevData,
@@ -147,6 +178,10 @@ export const AppProvider = ({ children }) => {
         setFilterByCategory,
         loading,
         setLoading,
+        checkout,
+        setCheckout,
+        buyNow,
+
         // setSearchCountry,
         // searchByRegion,
         // setSearchByRegion,

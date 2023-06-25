@@ -7,7 +7,7 @@ import { useGlobalContext } from "../AppContext/AppContext";
 
 function Checkout() {
   const navigate = useNavigate();
-  const { plants, cart, getTotalAmount, setPlants, setCart } = useGlobalContext();
+  const { plants, cart, getTotalAmount, setPlants, setCart, checkout} = useGlobalContext();
   const modalRef = useRef();
   const [userData, setUserData] = useState(null);
   //   console.log(userData?.firstName);
@@ -26,9 +26,7 @@ function Checkout() {
   });
 
   function submitForm(data) {
-    // e.preventDefault();
     console.log("Submit");
-    // console.log(data);
     setUserData(data);
     modalRef.current.close();
   }
@@ -37,7 +35,7 @@ function Checkout() {
     console.log("order Submit");
 
     plants.map((plant) => {
-      if (cart[plant.id].itemCount !== 0) {
+      if (cart[plant.id].itemCount !== 0 && checkout.includes(plant.id)) {
         setCart((prevData) => ({
           ...prevData,
           [plant.id]: {
@@ -47,6 +45,8 @@ function Checkout() {
         }));
       }
     });
+
+    console.log(cart);
 
     navigate("/product");
   }
@@ -90,11 +90,11 @@ function Checkout() {
 
       <p>{userData?.firstName}</p>
       {plants.map((plant) => {
-        if (cart[plant.id].itemCount !== 0) {
+        if (cart[plant.id].itemCount !== 0 && checkout.includes(plant.id)) {
           return (
             <div key={plant.id}>
               <p>
-                {plant.name} x{cart[plant.id].itemCount}
+                {plant.name} x {cart[plant.id].itemCount}
               </p>
 
               <span>SubTotal {cart[plant.id].itemCount * plant.price}</span>

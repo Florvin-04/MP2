@@ -20,10 +20,9 @@ function Product() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  // console.log(location);
 
   function nav() {
-    navigate("/login", {
+    navigate("/product", {
       state: {
         prevUrl: location.pathname,
       },
