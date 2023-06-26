@@ -1,4 +1,23 @@
-import jadeVine from "../public/image/JadeVine.webp";
+import jadeVine from "/image/JadeVine.webp";
+import waling_waling from "/image/waling-waling.jpg";
+import pitcher from "/image/pitcher.avif";
+import moth_orchid from "/image/moth_orchid.jpg";
+import narra from "/image/narra.jpg";
+import mango from "/image/mango.jpg";
+import dragon_blood from "/image/dragon_blood.jpg";
+import redbud from "/image/redbud.jpg";
+import snake_plant from "/image/snake_plant.jpg";
+import swiss_cheese from "/image/swiss_cheese.jpg";
+import rubber_plant from "/image/rubber_plant.jpg";
+import oregano from "/image/oregano.jpg";
+import basil from "/image/basil.jpg";
+import pandan from "/image/pandan.webp";
+import lemon_grass from "/image/lemongrass.jpg";
+import turmeric from "/image/tumeric.webp";
+import sampaguita from "/image/sampaguita.jpg";
+import ilang_ilang from "/image/ilang-ilang.png";
+import bougainvillea from "/image/bougainvillea.png";
+import rosal from "/image/rosal.jpg";
 
 export const PLANTS = [
   {
@@ -21,6 +40,7 @@ export const PLANTS = [
     family: "Indigenous",
     rarity: "Rare",
     availability: 100,
+    img: waling_waling,
   },
   {
     id: 3,
@@ -31,6 +51,7 @@ export const PLANTS = [
     family: "Indigenous",
     rarity: "Common",
     availability: 100,
+    img: pitcher,
   },
   {
     id: 4,
@@ -41,16 +62,18 @@ export const PLANTS = [
     family: "Indigenous",
     rarity: "Semi-Common",
     availability: 100,
+    img: moth_orchid,
   },
   {
     id: 5,
-    name: "Pitcher Plant",
+    name: "Narra",
     description:
-      "Pitcher plants are herbaceous perennials; they blossom in spring, then wither and go dormant in winter. They grow in clumps and can spread to several feet in diameter. Depending on the variety, pitchers can be 6 inches to more than 36 inches tall.",
+      "Narra has dense, dark green foliage and distinctive, deeply grooved bark. The wood of the Narra tree is highly valued for its durability and is often used in furniture making and construction. It is also culturally significant and holds a special place in Filipino folklore and traditions.",
     price: 100,
     family: "Indigenous",
     rarity: "Semi-Common",
     availability: 100,
+    img: narra,
   },
   {
     id: 6,
@@ -61,6 +84,7 @@ export const PLANTS = [
     family: "Tree",
     rarity: "Common",
     availability: 100,
+    img: mango,
   },
   {
     id: 7,
@@ -71,6 +95,7 @@ export const PLANTS = [
     family: "Tree",
     rarity: "rare",
     availability: 100,
+    img: dragon_blood,
   },
   {
     id: 8,
@@ -81,6 +106,7 @@ export const PLANTS = [
     family: "Tree",
     rarity: "Rare",
     availability: 100,
+    img: redbud,
   },
   {
     id: 9,
@@ -91,6 +117,7 @@ export const PLANTS = [
     family: "Tropical Houseplant",
     rarity: "Common",
     availability: 100,
+    img: snake_plant,
   },
   {
     id: 10,
@@ -101,6 +128,7 @@ export const PLANTS = [
     family: "Tropical Houseplant",
     rarity: "Common",
     availability: 100,
+    img: swiss_cheese,
   },
   {
     id: 11,
@@ -111,6 +139,7 @@ export const PLANTS = [
     family: "Tropical Houseplant",
     rarity: "Common",
     availability: 100,
+    img: rubber_plant,
   },
   {
     id: 12,
@@ -121,6 +150,7 @@ export const PLANTS = [
     family: "Herb",
     rarity: "Common",
     availability: 100,
+    img: oregano,
   },
   {
     id: 13,
@@ -131,6 +161,7 @@ export const PLANTS = [
     family: "Herb",
     rarity: "Common",
     availability: 100,
+    img: basil,
   },
   {
     id: 14,
@@ -141,6 +172,7 @@ export const PLANTS = [
     family: "Herb",
     rarity: "Common",
     availability: 100,
+    img: pandan,
   },
   {
     id: 15,
@@ -151,6 +183,7 @@ export const PLANTS = [
     family: "Herb",
     rarity: "Common",
     availability: 100,
+    img: lemon_grass,
   },
   {
     id: 16,
@@ -161,6 +194,7 @@ export const PLANTS = [
     family: "Herb",
     rarity: "Common",
     availability: 100,
+    img: turmeric,
   },
   {
     id: 17,
@@ -171,6 +205,7 @@ export const PLANTS = [
     family: "Flowering Plant",
     rarity: "Common",
     availability: 100,
+    img: sampaguita,
   },
   {
     id: 18,
@@ -181,6 +216,7 @@ export const PLANTS = [
     family: "Flowering Plant",
     rarity: "Common",
     availability: 100,
+    img: ilang_ilang,
   },
   {
     id: 19,
@@ -191,6 +227,7 @@ export const PLANTS = [
     family: "Flowering Plant",
     rarity: "Common",
     availability: 100,
+    img: bougainvillea,
   },
   {
     id: 20,
@@ -201,5 +238,6 @@ export const PLANTS = [
     family: "Flowering Plant",
     rarity: "Semi-Common",
     availability: 100,
+    img: rosal,
   },
 ];

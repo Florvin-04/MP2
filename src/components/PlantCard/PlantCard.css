@@ -1,0 +1,10 @@
+.card {
+  border: 1px solid black;
+  
+  cursor: pointer;
+}
+
+.card-img-top{
+  aspect-ratio: 11 / 8;
+  object-fit: cover;
+}

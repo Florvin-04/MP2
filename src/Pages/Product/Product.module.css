@@ -1,3 +1,4 @@
+
 .dropdown__category {
   /* margin-top: 3rem; */
   position: relative;
@@ -34,20 +35,31 @@
   display: none;
 }
 
+
+.plants__container{
+  margin-top: 2rem;
+}
+
 .category__list.active {
   display: block;
 }
 
-.filter__plant{
-
+.filter__plant {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+ 
 }
 
-
-.filterByFamily{
+.filterByFamily {
   position: relative;
   z-index: 10;
+}
+
+.filterName {
+  padding: 0.8em;
+  border: 1px solid #06bf77;
+  width: 20rem;
 }
 

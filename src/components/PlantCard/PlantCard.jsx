@@ -2,11 +2,11 @@ import React from "react";
 import "./PlantCard.css";
 import { Link } from "react-router-dom";
 
-import { useGlobalContext } from "../AppContext/AppContext";
+import { useGlobalContext } from "../../AppContext/AppContext";
 
 function PlantCard(plant) {
   const { cart, addToCart } = useGlobalContext();
-  console.log(plant.img);
+  // console.log(plant.img);
 
   return (
     // <div className="card">

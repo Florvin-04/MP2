@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+ul,
+ol {
+  list-style: none;
+}
 :root {
   --primary: #157afe;
   --secondary: #808080;

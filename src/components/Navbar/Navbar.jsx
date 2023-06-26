@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../AppContext/AppContext";
+import logo from '/image/Tanim-logo.png'
 import "./Navbar.css";
 
 function Navbar() {
@@ -26,7 +27,7 @@ function Navbar() {
             id="logo_pic"
           >
             <img
-              src="image/Tanim-logo.png"
+              src={logo}
               alt="Logo"
             />
           </a>
@@ -119,12 +120,12 @@ function Navbar() {
               </svg> */}
 
               <li className="login-button">
-                <a
+                <Link
+                  to="/login"
                   className="nav-link"
-                  href="login2.html"
                 >
                   <strong>Log In</strong>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
