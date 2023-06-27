@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./App.css";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 
+import "./App.css";
+
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "./AppContext/AppContext";
 import Product from "./Pages//Product/Product";
-import Cart from "./Pages/Cart";
+import Cart from "./Pages/Cart/Cart";
 import Plant from "./Pages/Plant/Plant";
 import Login from "./Pages/Login/Login";
 import Navbar from "./components/Navbar/Navbar";

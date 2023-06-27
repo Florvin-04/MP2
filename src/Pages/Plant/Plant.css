@@ -186,14 +186,17 @@ button {
   /* outline: 2px solid red; */
   grid-column: span 2;
 
+  display: flex;
+  justify-content: space-between;
+
+
   background-color: hsl(var(--Neutral-Light-grayish-blue));
 }
 
-.number-of-item--container > form {
-  /* outline: 2px solid red; */
+/* .number-of-item--container > form {
   display: flex;
   justify-content: space-between;
-}
+} */
 
 .number-of-item--container input {
   /* outline: 2px solid red; */
@@ -203,7 +206,7 @@ button {
   background-color: hsl(var(--Neutral-Light-grayish-blue));
 }
 
-.number-of-item--container form > button {
+.number-of-item--container > button {
   border: none;
 
   background-color: transparent;

@@ -1,0 +1,157 @@
+:root {
+  --Primary-Green: 157, 94%, 39%;
+  --Primary-Pale-Green: 25 100% 94%;
+  --Primary-BG-Green: 125, 83%, 84%;
+
+  --Neutral-Very-dark-blue: 220 13% 13%;
+  --Neutral-Dark-grayish-blue: 219 9% 45%;
+  --Neutral-Grayish-blue: 220 14% 75%;
+  --Neutral-Light-grayish-blue: 223 64% 98%;
+  --Neutral-White: 0 0% 100%;
+
+  /* (with 75% opacity for lightbox background): */
+}
+
+.plant__wrapper{
+    padding-bottom: 3rem;
+}
+
+.parentCartContainer{
+    margin-top: 2rem;
+}
+
+.cart__container {
+  border: 1px solid hsl(var(--Primary-Green), 0.4);
+  display: flex;
+  align-items: center;
+  /* gap: 1rem; */
+}
+.cart__container > input {
+  display: none;
+}
+
+.cart_item-container {
+  /* border: 1px solid black; */
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  cursor: pointer;
+}
+.cart_item-container:hover {
+  background-color: rgb(215, 252, 215);
+}
+
+
+.active {
+  background-color: rgb(215, 252, 215);
+}
+
+.cart__image--container > img {
+  width: 100%;
+  aspect-ratio: 2/ 1;
+  object-fit: cover;
+}
+
+.cart__description--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 0em 1em 1em 1em;
+}
+
+.plant_name {
+  font-size: 2rem;
+}
+
+.plant_price {
+  font-size: 1.5rem;
+}
+
+.handleChangeContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.handleChangeContainer > div:first-child {
+  /* border: 1px solid red; */
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.handleChangeContainer div:first-child > input {
+  /* border: 1px solid red; */
+  text-align: center;
+  /* height: 100%; */
+}
+
+.handleChangeContainer div:first-child > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  padding: .2em 0.5em 0.1em 0.5em;
+  font-size: 1.5rem;
+  background-color: hsl(var(--Primary-BG-Green));
+}
+
+.handleChangeContainer > div:last-child {
+  justify-self: center;
+  align-self: center;
+}
+
+.sub_total {
+  text-align: right;
+}
+
+.checkout{
+    margin-top: 1rem;
+    display: flex;
+    /* outline: 1px solid red; */
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* background-color: red; */
+}
+
+.total_amount{
+    text-align: right;
+}
+
+@media (min-width: 600px) {
+  .cart_item-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 2rem;
+  }
+
+  .cart__image--container > img {
+    width: 15rem;
+    min-width: 11rem;
+    
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .plant__info {
+    /* outline: 1px solid red; */
+    width: 20rem;
+    display: flex;
+    /* align-items: self-start;
+    gap: -3rem; */
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cart__description--container {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .handleChangeContainer > div:first-child {
+    place-content: center;
+  }
+}

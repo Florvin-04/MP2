@@ -101,7 +101,7 @@ function Navbar() {
                     />
                   </svg>
                   {/* <sup>{`${getCartItemNumber() ? getCartItemNumber() : ""}`}</sup> */}
-                  {getCartItemNumber() ? <sup>{getCartItemNumber()}</sup> : ""}
+                  {getCartItemNumber() ? <p>{getCartItemNumber()}</p> : ""}
                 </Link>
               </li>
 
