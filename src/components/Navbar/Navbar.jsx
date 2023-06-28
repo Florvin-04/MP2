@@ -13,7 +13,7 @@ function Navbar() {
 
   const [isUserInfo, setIsUserInfo] = useState(false);
 
-  if (location.pathname == "/login") {
+  if (location.pathname == "/login" || location.pathname == "/register") {
     return;
   }
 
@@ -124,7 +124,7 @@ function Navbar() {
                       onClick={() => {
                         localStorage.removeItem("keepMeLoggedIn");
                         localStorage.removeItem("cart");
-                        navigate("/product")
+                        navigate("/product");
                         window.location.reload();
                       }}
                     >

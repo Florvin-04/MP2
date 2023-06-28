@@ -17,6 +17,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Checkout from "./Pages/Checkout/Checkout";
 import Loading from "./components/Loading/Loading";
 import Footer from "./components/Footer/Footer";
+import SignUp from "./Pages/SignUp/SignUp";
 
 function App() {
   const { setCheckout, cart } = useGlobalContext();
@@ -47,6 +48,11 @@ function App() {
         <Route
           path="/login"
           element={<Login />}
+        />
+
+        <Route
+          path="/register"
+          element={<SignUp />}
         />
 
         <Route
