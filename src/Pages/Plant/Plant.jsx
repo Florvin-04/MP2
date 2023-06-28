@@ -3,13 +3,15 @@ import "./Plant.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../AppContext/AppContext";
 import { PiArrowFatLeftFill } from "react-icons/pi";
-const INITIAL_VALUE = {
-  plantCount: 0,
-  plantId: null,
-};
+
 function Plant() {
   const { plants, cart, addToCart, buyNow, setCart } = useGlobalContext();
   const { id } = useParams();
+
+  const INITIAL_VALUE = {
+    plantCount: 1,
+    plantId: Number(id),
+  };
   const navigate = useNavigate();
 
   const [quantity, setQuanity] = useState(INITIAL_VALUE);
@@ -37,9 +39,11 @@ function Plant() {
       ...prevData,
       [quantity.plantId]: {
         ...prevData[quantity.plantId],
-        itemCount: Number([quantity.plantCount]),
+        itemCount: prevData[quantity.plantId].itemCount + Number([quantity.plantCount]),
       },
     }));
+
+    setQuanity(INITIAL_VALUE)
   }
 
   console.log(quantity);
@@ -218,12 +222,13 @@ function Plant() {
                   <div className="add-to-cart--container">
                     <div className="number-of-item--container">
                       <button
-                        form="override-cart-value_form"
+                        // form="override-cart-value_form"
                         className="subtract-item"
                         onClick={(e) => {
                           setQuanity((prevData) => ({
-                            plantCount: prevData.plantCount <= 0 ? 0 : prevData.plantCount - 1,
-                            plantId: plant.id,
+                            ...prevData,
+                            plantCount: prevData.plantCount <= 1 ? 1 : prevData.plantCount - 1,
+                            // plantId: plant.id,
                           }));
                         }}
                       >
@@ -266,7 +271,7 @@ function Plant() {
 
                       <button
                         className="add-item"
-                        form="override-cart-value_form"
+                        // form="override-cart-value_form"
                         onClick={() => {
                           setQuanity((prevData) => ({
                             plantCount: prevData.plantCount + 1,
@@ -305,7 +310,9 @@ function Plant() {
                     </button>
                     <button
                       className="add-to-cart--bnt"
-                      onClick={() => addToCart(plant.id)}
+                      form="override-cart-value_form"
+
+                      // onClick={() => addToCart(plant.id)}
                     >
                       <svg
                         className="add-to-cart--svg"

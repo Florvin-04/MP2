@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import CartCSS from "./Cart.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useGlobalContext } from "../../AppContext/AppContext";
+
+import { FaTrashAlt } from "react-icons/fa";
 
 function Cart() {
   const {
@@ -43,7 +45,10 @@ function Cart() {
       {plants.map((plant) => {
         if (cart[plant.id].itemCount !== 0) {
           return (
-            <div key={plant.id} className={`${CartCSS["parentCartContainer"]}`}>
+            <div
+              key={plant.id}
+              className={`${CartCSS["parentCartContainer"]}`}
+            >
               <div className={CartCSS["cart__container"]}>
                 <input
                   type="checkbox"
@@ -128,11 +133,18 @@ function Cart() {
                       </div>
 
                       <div>
+                        <Link
+                          className="btn btn-primary"
+                          to={`/product/${plant.id}`}
+                        >
+                          View Product
+                        </Link>
+
                         <button
-                          className="btn btn-danger"
+                          className={`btn btn-danger ${CartCSS["removeItemToCart"]}`}
                           onClick={() => removeItem(plant.id)}
                         >
-                          Remove Item
+                          <FaTrashAlt />
                         </button>
                       </div>
                     </div>
@@ -148,10 +160,10 @@ function Cart() {
       })}
 
       {getTotalAmount() ? (
-        <div  className={CartCSS["checkout"]}>
+        <div className={CartCSS["checkout"]}>
           <p className={CartCSS["total_amount"]}>Total Amount: {getTotalAmount()}</p>
           <button
-          className="btn btn-primary"
+            className="btn btn-primary"
             onClick={() => {
               navigate("/checkout");
             }}

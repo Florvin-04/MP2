@@ -43,6 +43,10 @@
   background-color: rgb(215, 252, 215);
 }
 
+.cart_item-container:hover .removeItemToCart{
+  visibility: visible;
+}
+
 
 .active {
   background-color: rgb(215, 252, 215);
@@ -100,6 +104,16 @@
 .handleChangeContainer > div:last-child {
   justify-self: center;
   align-self: center;
+  
+  
+  display: flex;
+  gap: 1rem;
+}
+
+
+
+.removeItemToCart{
+  visibility: hidden;
 }
 
 .sub_total {
