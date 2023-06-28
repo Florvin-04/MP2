@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import PlantCard from "../../components/PlantCard/PlantCard";
 import { useGlobalContext } from "../../AppContext/AppContext";
@@ -22,13 +22,9 @@ function Product() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // function nav() {
-  //   navigate("/product", {
-  //     state: {
-  //       prevUrl: location.pathname,
-  //     },
-  //   });
-  // }
+  // useEffect(() => {
+  //   window.location.reload();
+  // }, [location.pathname]);
 
   return (
     <>

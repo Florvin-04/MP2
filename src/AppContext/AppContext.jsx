@@ -13,24 +13,22 @@ const getDefaultCart = () => {
   return cart;
 };
 
+const storedCart = localStorage.getItem("cart");
+
 export const AppProvider = ({ children }) => {
   const [plants, setPlants] = useState([]);
-
-  const [cart, setCart] = useState(getDefaultCart());
+  const [loggedIn, setLoggedIn] = useState(
+    localStorage.getItem("keepMeLoggedIn") !== null ? true : false
+  );
+  const [cart, setCart] = useState(JSON.parse(storedCart) || getDefaultCart());
   const [checkout, setCheckout] = useState([]);
   const [filterByCategory, setFilterByCategory] = useState("All");
   const [filterByName, setFilterByName] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // const getCartValue = () => {
-  //   return plants.map((plant) => {
-  //     if (cart[plant.id].itemCount !== 0) {
-  //       return `${plant.name} ${plant.id}`;
-  //     }
-  //   });
-  // };
-
-  // console.log(getCartValue());
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const filter = () => {
     setLoading(true);
@@ -79,8 +77,8 @@ export const AppProvider = ({ children }) => {
       if (cart[keyCart].itemCount != 0) {
         let item = plants.find((plant) => plant.id == keyCart);
 
-        if (checkout.includes(item.id)) {
-          total += cart[keyCart].itemCount * item.price;
+        if (checkout.includes(item?.id)) {
+          total += cart[keyCart].itemCount * item?.price;
         }
       }
     }
@@ -181,6 +179,7 @@ export const AppProvider = ({ children }) => {
         checkout,
         setCheckout,
         buyNow,
+        loggedIn,
 
         // setSearchCountry,
         // searchByRegion,

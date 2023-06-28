@@ -1,3 +1,10 @@
+:root {
+  --primary: #157afe;
+  --secondary: #808080;
+  --bg-light: #fff;
+}
+
+
 .portal {
   display: grid;
   place-items: center;
@@ -73,13 +80,13 @@ button {
   cursor: pointer;
 }
 
-.portal span {
+.portal .or {
   color: var(--secondary);
   display: flex;
 }
 
-.portal span::before,
-.portal span::after {
+.portal .or::before,
+.portal .or::after {
   content: "";
   width: 100%;
   height: 1px;
@@ -87,11 +94,11 @@ button {
   margin: auto;
 }
 
-.portal span::before {
+.portal .or::before {
   margin-right: 1rem;
 }
 
-.portal span::after {
+.portal .or::after {
   margin-left: 1rem;
 }
 
@@ -181,4 +188,14 @@ button {
 
 .portal .userLoginErrorMessage {
   color: red;
+}
+
+.forgot-keepMeLogIn{
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+.forgot-keepMeLogIn span{
+ 
+  margin-left: .5rem;
 }

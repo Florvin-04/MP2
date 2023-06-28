@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./Plant.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useGlobalContext } from "../../AppContext/AppContext";
 import { PiArrowFatLeftFill } from "react-icons/pi";
 
 function Plant() {
-  const { plants, cart, addToCart, buyNow, setCart } = useGlobalContext();
+  const { plants, cart, loggedIn, buyNow, setCart } = useGlobalContext();
   const { id } = useParams();
 
   const INITIAL_VALUE = {
@@ -13,6 +13,7 @@ function Plant() {
     plantId: Number(id),
   };
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [quantity, setQuanity] = useState(INITIAL_VALUE);
   const [buttonClicked, setButtonClicked] = useState(INITIAL_VALUE);
@@ -43,10 +44,10 @@ function Plant() {
       },
     }));
 
-    setQuanity(INITIAL_VALUE)
+    setQuanity(INITIAL_VALUE);
   }
 
-  console.log(quantity);
+  // console.log(quantity);
 
   return (
     <div>
@@ -302,6 +303,15 @@ function Plant() {
                     <button
                       className="add-to-cart--bnt"
                       onClick={() => {
+                        if (!loggedIn) {
+                          alert("login first");
+                          navigate("/login", {
+                            state: {
+                              prevUrl: location.pathname,
+                            },
+                          });
+                          return;
+                        }
                         navigate("/checkout");
                         buyNow(plant.id);
                       }}

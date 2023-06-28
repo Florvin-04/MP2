@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import LoginCSS from "./Login.module.css";
 
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 
+let loggedIn = JSON.parse(localStorage.getItem("keepMeLoggedIn"));
+
 function Login() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [formState, setFormState] = useState({
     userName: "",
     password: "",
     showPass: false,
+    keepMe: false,
   });
 
-  const [formErrors, setFormErrors] = useState(null);
+  // if (loggedIn) {
+  //   // navigate('/product')
+  //   navigate("/product");
+  // }
 
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [formErrors, setFormErrors] = useState(null);
 
   function handleChange(e) {
     const target = e.target;
@@ -44,10 +52,14 @@ function Login() {
     setFormErrors(errors);
 
     if (isValid) {
-      // Submit the form
-      navigate(location.state?.prevUrl || "/product");
+      if (formState) {
+        localStorage.setItem("keepMeLoggedIn", JSON.stringify(formState.userName));
+      }
+      
       // console.log("Form submitted:", formState);
     }
+    navigate(location.state?.prevUrl || "/product");
+    window.location.reload();
   }
 
   return (
@@ -67,7 +79,7 @@ function Login() {
           />
           Log in with Google
         </button>
-        <span>or</span>
+        <span className={LoginCSS["or"]}>or</span>
         <div className={LoginCSS["input-field"]}>
           <input
             type="text"
@@ -113,12 +125,24 @@ function Login() {
           /> */}
         </div>
         {formErrors?.both && <p className={LoginCSS["userLoginErrorMessage"]}>{formErrors.both}</p>}
-        <a
-          href="#"
-          id={LoginCSS["forgot-pass"]}
-        >
-          Forgot Password
-        </a>
+        <div className={LoginCSS["forgot-keepMeLogIn"]}>
+          <label htmlFor="keepMe">
+            <input
+              type="checkbox"
+              name="keepMe"
+              id="keepMe"
+              checked={formState.keepMe}
+              onChange={handleChange}
+            />
+            <span>Keep Me Logged In</span>
+          </label>
+          <a
+            href="#"
+            id={LoginCSS["forgot-pass"]}
+          >
+            Forgot Password
+          </a>
+        </div>
         <button id={LoginCSS["signin"]}>Sign in</button>
         <p id={LoginCSS["signup"]}>
           Don't have an account?

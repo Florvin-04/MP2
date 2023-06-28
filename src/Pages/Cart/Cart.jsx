@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartCSS from "./Cart.module.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useGlobalContext } from "../../AppContext/AppContext";
 
 import { FaTrashAlt } from "react-icons/fa";
@@ -19,6 +19,18 @@ function Cart() {
   } = useGlobalContext();
 
   const navigate = useNavigate();
+  // const location = useLocation();
+  // console.log(location);
+
+  // const [reload, setReload] = useState(location.state.reload);
+
+  // useEffect(() => {
+  //   if (reload) {
+  //     // delete location.state.reload;
+  //     setReload(false);
+  //     // window.location.reload();
+  //   }
+  // }, []);
 
   function handleChange(e, id) {
     const target = e.target;
@@ -40,10 +52,22 @@ function Cart() {
     }));
   }
 
+  const hasNonZeroItemCount = Object.values(cart).every((item) =>
+    item.itemCount === 0 ? true : false
+  );
+
+  if (hasNonZeroItemCount) {
+    return (
+      <div className="container">
+        <p>No Item In Cart</p>
+      </div>
+    );
+  }
+
   return (
     <div className={`${CartCSS["plant__wrapper"]} container`}>
       {plants.map((plant) => {
-        if (cart[plant.id].itemCount !== 0) {
+        if (cart[plant.id]?.itemCount !== 0) {
           return (
             <div
               key={plant.id}

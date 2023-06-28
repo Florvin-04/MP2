@@ -86,8 +86,37 @@
   font-size: 0.8rem;
   padding: 0.1em 0.5em;
   position: absolute;
-  top: -.2rem;
-  right: -.2rem;
+  top: -0.2rem;
+  right: -0.2rem;
+}
+
+.user-nav button {
+  background-color: transparent;
+}
+.user-nav span {
+  margin-top: 0.2rem;
+  cursor: pointer;
+  /* outline: 1px solid red; */
+}
+.user-nav {
+  /* outline: 1px solid red; */
+}
+
+.user-info {
+  outline: 1px solid red;
+  position: absolute;
+  padding: 1em;
+  display: none;
+}
+
+.user-info.active {
+  display: block;
+  z-index: 10;
+}
+
+.logout-btn {
+  background-color: red !important;
+  color: white;
 }
 
 .product a {

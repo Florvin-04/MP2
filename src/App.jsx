@@ -14,11 +14,12 @@ import Cart from "./Pages/Cart/Cart";
 import Plant from "./Pages/Plant/Plant";
 import Login from "./Pages/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
-import Checkout from "./Pages/Checkout";
+import Checkout from "./Pages/Checkout/Checkout";
 import Loading from "./components/Loading/Loading";
+import Footer from "./components/Footer/Footer";
 
 function App() {
-  const { setCheckout } = useGlobalContext();
+  const { setCheckout, cart } = useGlobalContext();
   const location = useLocation();
   const navigate = useNavigate();
   // console.log(location.pathname);
@@ -35,6 +36,8 @@ function App() {
       // console.log("clear");
     }
   }, [location]);
+
+  // console.log(cart);
 
   return (
     <>
@@ -66,6 +69,8 @@ function App() {
           element={<Plant />}
         />
       </Routes>
+
+      <Footer/>
     </>
   );
 }

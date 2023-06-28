@@ -1,0 +1,135 @@
+/* ADDRESS */
+
+.change__address {
+  display: flex;
+  justify-content: space-between;
+}
+
+.address__form div {
+  /* outline: 1px solid red; */
+  display: grid;
+  margin-top: 0.2rem;
+}
+
+.address__form div input {
+  outline: 1px solid green;
+  /* float: right; */
+  width: 30rem;
+}
+
+.address__form div input.input__error {
+  outline: 1px solid red;
+}
+
+.address__form div p {
+  /* outline: 1px solid red; */
+  color: red;
+  font-size: 0.9rem;
+}
+
+.submit__address__form{
+    margin-top: 1rem;
+}
+
+/* CHECKOUT ITEMS */
+.checkout__parent {
+  overflow: hidden;
+  /* background-color: red; */
+  /* height:20rem; */
+}
+
+.checkout__container--parent {
+  /* outline: 1px solid red; */
+  margin-top: 2rem;
+  display: grid;
+  /* grid-auto-flow: row; */
+}
+
+.checkout__items--container > div + div {
+  /* background-color: blue; */
+  /* outline: 2px solid red; */
+
+  margin-top: 1em;
+}
+
+
+
+.checkout__items--container img {
+  width: 10rem;
+  aspect-ratio: 6/ 5;
+}
+
+.checkout__items {
+  background-color: rgb(243, 243, 243);
+  display: flex;
+  gap: 1rem;
+  padding-right: 1em;
+
+}
+
+.checkout__item--details {
+  width: 100%;
+  padding: 0.5em 0em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item__descripttion {
+}
+
+.item--name {
+  font-size: 1.9rem;
+}
+
+.item--price {
+  display: flex;
+  justify-content: space-between;
+  /* outline: 1px solid red; */
+}
+
+.checkout__subtotal {
+  text-align: right;
+  padding: 0.5em 1em;
+}
+
+.checkout__totalAmount {
+  /* outline: 2px solid red; */
+  /* box-shadow: 0px 1px 11px 0px rgba(0,0,0,0.75); */
+  padding: 1em;
+  background-color: rgb(243, 243, 243);
+  margin-top: 2rem;
+}
+
+.checkout__totalAmount > p {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout_submit_btn {
+  margin-top: 1rem;
+  float: right;
+}
+
+
+@media (min-width: 800px) {
+  .checkout__container--parent{
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+    height: 30.1rem;
+  }
+
+  .checkout__items--container {
+    /* outline: 2px solid red; */
+  
+    /* padding-block: .5em; */
+  
+    overflow-y: scroll;
+    height: 30rem;
+  }
+
+  .checkout__totalAmount{
+    margin-top: 0;
+  }
+}
