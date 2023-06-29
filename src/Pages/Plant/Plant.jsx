@@ -36,6 +36,23 @@ function Plant() {
   function submitChanges(e) {
     e.preventDefault();
 
+    // if (!loggedIn) {
+    //   alert("login first");
+    //   navigate("/login", {
+    //     state: {
+    //       prevUrl: location.pathname,
+    //     },
+    //   });
+
+    if (!loggedIn) {
+      alert("Login First");
+      navigate("/login", {
+        state: {
+          prevUrl: location.pathname,
+        },
+      });
+    }
+
     setCart((prevData) => ({
       ...prevData,
       [quantity.plantId]: {

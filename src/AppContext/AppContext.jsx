@@ -14,12 +14,16 @@ const getDefaultCart = () => {
 };
 
 const storedCart = localStorage.getItem("cart");
+const storedUserInfo = localStorage.getItem("userInfo");
 
 export const AppProvider = ({ children }) => {
   const [plants, setPlants] = useState([]);
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("keepMeLoggedIn") !== null ? true : false
   );
+
+  const [userInfo, setUserInfo] = useState(JSON.parse(storedUserInfo) || null);
+
   const [cart, setCart] = useState(JSON.parse(storedCart) || getDefaultCart());
   const [checkout, setCheckout] = useState([]);
   const [filterByCategory, setFilterByCategory] = useState("All");
@@ -180,6 +184,8 @@ export const AppProvider = ({ children }) => {
         setCheckout,
         buyNow,
         loggedIn,
+        userInfo,
+        setUserInfo,
 
         // setSearchCountry,
         // searchByRegion,

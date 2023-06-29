@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import LoginCSS from "./Login.module.css";
 
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
+import { useGlobalContext } from "../../AppContext/AppContext";
 
 let loggedIn = JSON.parse(localStorage.getItem("keepMeLoggedIn"));
 
 function Login() {
+  const { userInfo } = useGlobalContext();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -17,6 +19,14 @@ function Login() {
     showPass: false,
     keepMe: false,
   });
+
+  // useEffect(() => {
+  //   setFormState((prevSate) => ({
+  //     ...prevSate,
+  //     userName: userInfo.userName,
+  //     password: userInfo.password,
+  //   }));
+  // }, []);
 
   // if (loggedIn) {
   //   // navigate('/product')
@@ -44,7 +54,7 @@ function Login() {
     let errors = {};
     let isValid = true;
 
-    if (formState.userName != "user" && formState.password != "pass") {
+    if (formState.userName !== userInfo.userName || formState.password !== userInfo.password) {
       errors.both = "Incorrect Username and Password.";
       isValid = false;
     }
@@ -54,12 +64,12 @@ function Login() {
     if (isValid) {
       if (formState) {
         localStorage.setItem("keepMeLoggedIn", JSON.stringify(formState.userName));
+        console.log("LogIn");
       }
-      
-      // console.log("Form submitted:", formState);
+
+      navigate(location.state?.prevUrl || "/product");
+      window.location.reload();
     }
-    navigate(location.state?.prevUrl || "/product");
-    window.location.reload();
   }
 
   return (
@@ -146,7 +156,7 @@ function Login() {
         <button id={LoginCSS["signin"]}>Sign in</button>
         <p id={LoginCSS["signup"]}>
           Don't have an account?
-          <a href="#">Sign up here</a>
+          <Link to="/register">Sign up here</Link>
         </p>
       </form>
     </section>

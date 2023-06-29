@@ -18,6 +18,7 @@ import Checkout from "./Pages/Checkout/Checkout";
 import Loading from "./components/Loading/Loading";
 import Footer from "./components/Footer/Footer";
 import SignUp from "./Pages/SignUp/SignUp";
+import Home from "./Pages/Home/Home";
 
 function App() {
   const { setCheckout, cart } = useGlobalContext();
@@ -56,6 +57,11 @@ function App() {
         />
 
         <Route
+          path="/home"
+          element={<Home />}
+        />
+
+        <Route
           path="/checkout"
           element={<Checkout />}
         />
@@ -76,7 +82,7 @@ function App() {
         />
       </Routes>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }

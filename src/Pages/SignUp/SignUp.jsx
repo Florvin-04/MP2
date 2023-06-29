@@ -1,48 +1,138 @@
 import React, { useState } from "react";
 import "./SignUp.css";
 
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
+
+import eyeFill from "/image/eye-fill.svg";
+import eyeSlashFill from "/image/eye-slash-fill.svg";
+import { useGlobalContext } from "../../AppContext/AppContext";
+
+// import { useForm } from "react-hook-form";
+// import * as yup from "yup";
+// import { yupResolver } from "@hookform/resolvers/yup";
+
+// import { useFormik } from "formik";
+
+const INITIAL_VALUE = {
+  email: "",
+  userName: "",
+  firstName: "",
+  lastName: "",
+  birthDate: "",
+  phoneNumber: "",
+  zipCode: "",
+  address: "",
+  password: "",
+  confirmPassword: "",
+  eye: false,
+};
+
+// const USER_CREDENTIALS = {
+//   email: "",
+//   userName: "",
+//   password: "",
+//   confirmPassword: "",
+// };
 
 function SignUp() {
+  const { setUserInfo } = useGlobalContext();
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
 
-  const schema = yup.object().shape({
-    // firstName: yup.number().typeError('Age must be a number').required("First Name Required!"),
-    email: yup.string().email().required("Email is Required"),
-    username: yup.string().required("Username is Required"),
-    firstName: yup.string().required("First Name is Required"),
-    // lastName: yup.string().required("Last Name is Required"),
-    // birthdate: yup
-    //   .date()
-    //   .required("Birthdate is Required.")
-    //   .max(new Date(), "Birthdate must be in the past."),
-    // phoneNo: yup.number(),
-    // zipCode: yup.number(),
-    // address: yup.string().required("Last Name is Required"),
-    // password: yup.string().required(),
-    // confirmPassword: yup
-    //   .string()
-    //   .oneOf([yup.ref("password"), null])
-    //   .required(),
-  });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  // const schema = yup.object().shape({
+  //   // firstName: yup.number().typeError('Age must be a number').required("First Name Required!"),
+  //   email: yup.string().email().required("Email is Required"),
+  //   userName: yup.string().required("Username is Required"),
+  //   firstName: yup.string().required("First Name is Required"),
+  //   // lastName: yup.string().required("Last Name is Required"),
+  //   // birthdate: yup
+  //   //   .date()
+  //   //   .required("Birthdate is Required.")
+  //   //   .max(new Date(), "Birthdate must be in the past."),
+  //   // phoneNo: yup.number(),
+  //   // zipCode: yup.number(),
+  //   // address: yup.string().required("Last Name is Required"),
+  //   // password: yup.string().required(),
+  //   // confirmPassword: yup
+  //   //   .string()
+  //   //   .oneOf([yup.ref("password"), null])
+  //   //   .required(),
+  // });
+  // const {
+  //   register,
+  //   handleSubmit,
+  // formState: { errors },
+  // } = useForm({
+  //   resolver: yupResolver(schema),
+  // });
 
-  function submitFormRegistration(data) {
-    console.log(data);
+  // function submitFormRegistration(data) {
+  //   console.log(data);
+  //   if (page !== 3) {
+  //     setPage((prev) => prev + 1);
+  //     return;
+  //   }
+
+  //   alert("Account Created");
+  // }
+
+  // function onSubmit() {
+  //   console.log("Submit");
+  //   if (page !== 3) {
+  //     setPage((prev) => prev + 1);
+  //     return;
+  //   }
+  // }
+
+  // const { values, handleChange, handleSubmit, errors } = useFormik({
+  //   initialValues: {
+  //     email: "",
+  //     userName: "",
+  //     firstName: page == 1 ? "s" : "",
+  //   },
+
+  //   validationSchema: schema,
+  //   onSubmit,
+  // });
+
+  // console.log(errors);
+
+  const [formState, setFormState] = useState(INITIAL_VALUE);
+  // const [userCredentials, setUserCredentials] = useState(USER_CREDENTIALS);
+
+  // console.log(formState);
+
+  function handleChange(e) {
+    const target = e.target;
+    const { name, value, type, checked } = target;
+
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+
+ 
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
     if (page !== 3) {
       setPage((prev) => prev + 1);
       return;
     }
 
-    alert("Account Created");
+    if (formState.password !== formState.confirmPassword) {
+      console.log("password Dont match");
+      return;
+    }
+
+    localStorage.setItem("userInfo", JSON.stringify(formState))
+
+    setUserInfo(formState);
+    console.log("Submit");
+
+    navigate("/login");
   }
 
   return (
@@ -51,7 +141,7 @@ function SignUp() {
         action="#"
         method="POST"
         className="form"
-        onSubmit={handleSubmit(submitFormRegistration)}
+        onSubmit={handleSubmit}
       >
         <div className="progresss">
           <div className={`progresss-bar active ${page === 1 && "current"}`}>
@@ -93,21 +183,27 @@ function SignUp() {
                     type="email"
                     id="email"
                     placeholder="e.g. sample@email.com"
+                    name="email"
+                    // {...register("email")}
+                    value={formState.email}
+                    onChange={handleChange}
                     required
-                    {...register("email")}
                   />
-                  {errors.email?.message}
+                  {/* {errors.email?.message} */}
                 </div>
                 <div className="field-input">
-                  <label htmlFor="uname">
+                  <label htmlFor="userName">
                     <span>*</span>Username
                   </label>
                   <input
                     type="text"
-                    id="uname"
+                    id="userName"
                     placeholder="e.g. gab613"
                     required
-                    {...register("username")}
+                    // {...register("username")}
+                    name="userName"
+                    value={formState.userName}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -138,8 +234,11 @@ function SignUp() {
                         type="text"
                         id="fname"
                         placeholder="e.g. John"
-                        require
-                        {...register("firstName")}
+                        required
+                        // {...register("firstName")}
+                        name="firstName"
+                        value={formState.firstName}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="lname-input">
@@ -151,6 +250,9 @@ function SignUp() {
                         id="fname"
                         placeholder="e.g. Doe"
                         required
+                        name="lastName"
+                        value={formState.lastName}
+                        onChange={handleChange}
                         // {...register("lastName")}
                       />
                     </div>
@@ -165,6 +267,9 @@ function SignUp() {
                     id="bdate"
                     required
                     // {...register("birthdate")}
+                    name="birthDate"
+                    value={formState.birthDate}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="field-group">
@@ -178,6 +283,9 @@ function SignUp() {
                       placeholder="+63 9386759145"
                       required
                       //   {...register("phoneNo")}
+                      name="phoneNumber"
+                      value={formState.phoneNumber}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="zip-input">
@@ -191,6 +299,9 @@ function SignUp() {
                       size="4"
                       required
                       //   {...register("zipCode")}
+                      name="zipCode"
+                      value={formState.zipCode}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -204,6 +315,9 @@ function SignUp() {
                     placeholder="San. Juan Street"
                     required
                     // {...register("address")}
+                    name="address"
+                    value={formState.address}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -239,34 +353,54 @@ function SignUp() {
                     <span>*</span>Password
                   </label>
                   <input
-                    type="password"
+                    type={`${formState.eye ? "text" : "password"}`}
                     id="password"
                     placeholder="Password"
                     required
                     // {...register("password")}
+                    name="password"
+                    value={formState.password}
+                    onChange={handleChange}
                   />
-                  <img
-                    className="show-hide-pass"
-                    src="image/eye-fill.svg"
-                    alt=""
-                  />
+                  <label htmlFor="eye">
+                    <img
+                      className="show-hide-pass"
+                      // src="image/eye-fill.svg"
+                      src={`${formState.eye ? eyeFill : eyeSlashFill}`}
+                      alt=""
+                    />
+                  </label>
                 </div>
                 <div className="field-input">
                   <label htmlFor="confirmpass">
                     <span>*</span>Confirm Password
                   </label>
                   <input
-                    type="password"
+                    type={`${formState.eye ? "text" : "password"}`}
                     id="confirmpass"
                     placeholder="Confirm Password"
                     // {...register("confirmPassword")}
+                    name="confirmPassword"
+                    value={formState.confirmPassword}
+                    onChange={handleChange}
                   />
-                  <img
-                    className="show-hide-pass"
-                    src="image/eye-slash-fill.svg"
-                    alt=""
-                  />
-                  {errors.confirmPassword?.message}
+                  <label htmlFor="eye">
+                    <img
+                      className="show-hide-pass"
+                      src={`${formState.eye ? eyeFill : eyeSlashFill}`}
+                      alt=""
+                    />
+
+                    <input
+                      type="checkbox"
+                      name="eye"
+                      id="eye"
+                      checked={formState.eye}
+                      onChange={handleChange}
+                    />
+                  </label>
+
+                  {/* {errors.confirmPassword?.message} */}
                 </div>
               </div>
               <div className="btn">

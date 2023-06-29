@@ -8,10 +8,9 @@ import { useGlobalContext } from "../../AppContext/AppContext";
 
 function Checkout() {
   const navigate = useNavigate();
-  const { plants, cart, getTotalAmount, setPlants, setCart, checkout } = useGlobalContext();
+  const { plants, cart, getTotalAmount, userInfo, setCart, checkout } = useGlobalContext();
   const modalRef = useRef();
   const [userData, setUserData] = useState(null);
-  //   console.log(userData?.firstName);
   const schema = yup.object().shape({
     // firstName: yup.number().typeError('Age must be a number').required("First Name Required!"),
     firstName: yup.string().required("First Name is Required."),
@@ -29,6 +28,8 @@ function Checkout() {
     baranggay: yup.string().required("Baranggay is Required."),
   });
 
+  
+
   const {
     register,
     handleSubmit,
@@ -45,12 +46,11 @@ function Checkout() {
   }
 
   function submitOrder() {
-    
-    if(!userData){
-      alert("Adrress is Required")
-      return 
+    if (!userData) {
+      alert("Adrress is Required");
+      return;
     }
-    
+
     console.log("order Submit");
     plants.map((plant) => {
       if (cart[plant.id].itemCount !== 0 && checkout.includes(plant.id)) {
@@ -162,7 +162,12 @@ function Checkout() {
             <p>{errors.streetNo?.message}</p>
           </div>
 
-          <button type="submit" className={checkoutCSS["submit__address__form"]}>submit</button>
+          <button
+            type="submit"
+            className={checkoutCSS["submit__address__form"]}
+          >
+            submit
+          </button>
         </form>
       </dialog>
 

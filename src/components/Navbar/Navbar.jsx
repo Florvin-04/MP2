@@ -7,7 +7,7 @@ import "./Navbar.css";
 import { FaUser, FaUserLarge } from "react-icons/fa6";
 
 function Navbar() {
-  const { getCartItemNumber, loggedIn } = useGlobalContext();
+  const { getCartItemNumber, loggedIn, userInfo } = useGlobalContext();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -51,12 +51,12 @@ function Navbar() {
           >
             <ul className="navbar-nav">
               <li className="home-button">
-                <a
+                <Link
                   className="nav-link"
-                  href="#"
+                  to="/home"
                 >
                   <strong>Home</strong>
-                </a>
+                </Link>
               </li>
 
               <li className="about-us">
@@ -118,7 +118,7 @@ function Navbar() {
                   </button>
 
                   <div className={`user-info ${isUserInfo ? "active" : ""}`}>
-                    <p>user name</p>
+                    <p>{userInfo?.userName}</p>
                     <button
                       className="logout-btn"
                       onClick={() => {

@@ -93,7 +93,7 @@ export const PLANTS = [
       "The dragon blood tree is a rare plant categorized under the dracaena genus of the Asparagaceae family. It grows in rocky grounds and on high locations, where it preserves water for many years; it is drought-tolerant and can adapt to arid conditions in which there is less water and soil.",
     price: 100,
     family: "Tree",
-    rarity: "rare",
+    rarity: "Rare",
     availability: 100,
     img: dragon_blood,
   },
