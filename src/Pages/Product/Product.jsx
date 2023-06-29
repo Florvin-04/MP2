@@ -29,7 +29,7 @@ function Product() {
   return (
     <>
       <div className={"container"}>
-        <h1>Products</h1>
+        <h2 className={productCSS["page-title"]}>Products</h2>
         {/* <button onClick={nav}>asd</button> */}
 
         <div className={productCSS["filter__plant"]}>
@@ -53,7 +53,7 @@ function Product() {
                 onClick={() => setToggleFilter((prev) => !prev)}
               >
                 {/* {category} */}
-                {filterName} Plants
+                <p className={productCSS["filter-text"]}>{filterName} Plants</p>
               </div>
               <ul
                 className={`${productCSS["category__list"]} ${
@@ -79,7 +79,11 @@ function Product() {
             </label>
           </div>
         </div>
-        {plants.length === 0 && loading == false && <h2>No Plant Found</h2>}
+        {plants.length === 0 && loading == false && (
+          <div className={productCSS["no-plant-found"]}>
+            <p className="">There is no '{filterByName}' plant in our store</p>
+          </div>
+        )}
       </div>
 
       {loading ? (

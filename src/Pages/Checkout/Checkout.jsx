@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import checkoutCSS from "./Checkout.module.css";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useFormik } from "formik";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useGlobalContext } from "../../AppContext/AppContext";
@@ -10,7 +10,14 @@ function Checkout() {
   const navigate = useNavigate();
   const { plants, cart, getTotalAmount, userInfo, setCart, checkout } = useGlobalContext();
   const modalRef = useRef();
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({
+    firstName: userInfo.firstName,
+    lastName: userInfo.lastName,
+    phoneNumber: userInfo.phoneNumber,
+    zipCode: userInfo.zipCode,
+    address: userInfo.address,
+  });
+
   const schema = yup.object().shape({
     // firstName: yup.number().typeError('Age must be a number').required("First Name Required!"),
     firstName: yup.string().required("First Name is Required."),
@@ -21,35 +28,36 @@ function Checkout() {
       .positive()
       .integer()
       .required("Phone Number is Required."),
-    // .test("len", "Must be exactly 5 characters", (val) => val.length === 5),
-    // buildingNumber: yup.number().positive().integer(),
-    province: yup.string().required("Province is Required."),
-    city: yup.string().required("City is Required."),
-    baranggay: yup.string().required("Baranggay is Required."),
+    zipCode: yup.number().typeError("Must be a number.").required(),
+    address: yup.string().required(),
   });
 
-  
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  function submitForm(data) {
-    console.log("Submit");
-    console.log(data);
-    setUserData(data);
+  function onSubmit(values) {
+    console.log("Address Complete");
+    setUserData(values);
     modalRef.current.close();
   }
 
+  const { values, errors, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      ...userData,
+      // firstName: userInfo.firstName,
+      // lastName: userInfo.lastName,
+      // phoneNumber: userInfo.phoneNumber,
+      // zipCode: userInfo.zipCode,
+      // address: userInfo.address,
+    },
+    validationSchema: schema,
+    onSubmit,
+  });
+
+  console.log(errors);
+
   function submitOrder() {
-    if (!userData) {
-      alert("Adrress is Required");
-      return;
-    }
+    // if (!userData) {
+    //   alert("Adrress is Required");
+    //   return;
+    // }
 
     console.log("order Submit");
     plants.map((plant) => {
@@ -57,8 +65,8 @@ function Checkout() {
         setCart((prevData) => ({
           ...prevData,
           [plant.id]: {
-            itemCount: 0,
             availability: prevData[plant.id].availability - prevData[plant.id].itemCount,
+            itemCount: 0,
           },
         }));
       }
@@ -76,90 +84,78 @@ function Checkout() {
         <form
           className={checkoutCSS["address__form"]}
           action=""
-          onSubmit={handleSubmit(submitForm)}
+          onSubmit={handleSubmit}
         >
           <div>
             <label htmlFor="firstName">First Name: </label>
             <input
-              className={errors.firstName?.message ? checkoutCSS["input__error"] : ""}
+              className={errors.firstName ? checkoutCSS["input__error"] : ""}
               type="text"
               id="firstName"
               placeholder="ex. Juan"
-              {...register("firstName")}
+              // {...register("firstName")}
+              value={values.firstName}
+              onChange={handleChange}
             />
-            <p>{errors.firstName?.message}</p>
+
+            <p>{errors.firstName}</p>
           </div>
 
           <div>
             <label htmlFor="lastName">Last Name: </label>
             <input
-              className={errors.lastName?.message ? checkoutCSS["input__error"] : ""}
+              className={errors.lastName ? checkoutCSS["input__error"] : ""}
               type="text"
               id="lastName"
               placeholder="ex. dela Cruz"
-              {...register("lastName")}
+              // {...register("lastName")}
+              value={values.lastName}
+              onChange={handleChange}
             />
-            <p>{errors.lastName?.message}</p>
+            <p>{errors.lastName}</p>
           </div>
 
           <div>
             <label htmlFor="phoneNumber">Phone Number: </label>
             <input
-              className={errors.phoneNumber?.message ? checkoutCSS["input__error"] : ""}
+              className={errors.phoneNumber ? checkoutCSS["input__error"] : ""}
               type="text"
               id="phoneNumber"
               placeholder="094512345678"
-              {...register("phoneNumber")}
+              // {...register("phoneNumber")}
+              value={values.phoneNumber}
+              onChange={handleChange}
             />
-            <p>{errors.phoneNumber?.message}</p>
+            <p>{errors.phoneNumber}</p>
           </div>
 
           <div>
-            <label htmlFor="province">Province: </label>
+            <label htmlFor="zipCode">Zip Code: </label>
             <input
-              className={errors.province?.message ? checkoutCSS["input__error"] : ""}
+              className={errors.zipCode ? checkoutCSS["input__error"] : ""}
               type="text"
-              id="province"
-              placeholder="ex. Cavite"
-              {...register("province")}
+              id="zipCode"
+              placeholder="4112"
+              maxLength="4"
+              // {...register("baranggay")}
+              value={values.zipCode}
+              onChange={handleChange}
             />
-            <p>{errors.province?.message}</p>
+            <p>{errors.baranggay}</p>
           </div>
 
           <div>
-            <label htmlFor="city">City: </label>
+            <label htmlFor="address">Complete Address: </label>
             <input
-              className={errors.city?.message ? checkoutCSS["input__error"] : ""}
+              className={errors.address ? checkoutCSS["input__error"] : ""}
               type="text"
-              id="city"
-              placeholder="ex. Dasma"
-              {...register("city")}
-            />
-            <p>{errors.city?.message}</p>
-          </div>
-
-          <div>
-            <label htmlFor="baranggay">Baranggay: </label>
-            <input
-              className={errors.baranggay?.message ? checkoutCSS["input__error"] : ""}
-              type="text"
-              id="baranggay"
-              placeholder="ex. Poblacion III"
-              {...register("baranggay")}
-            />
-            <p>{errors.baranggay?.message}</p>
-          </div>
-
-          <div>
-            <label htmlFor="streetNo">Street No, Bulding, House No: </label>
-            <input
-              className={errors.streetNo?.message ? checkoutCSS["input__error"] : ""}
-              type="text"
-              id="streetNo"
+              id="address"
               placeholder="ex. 185 De Leon St. "
-              {...register("streetNo")}
+              // {...register("address")}
+              value={values.address}
+              onChange={handleChange}
             />
-            <p>{errors.streetNo?.message}</p>
+            <p>{errors.streetNo}</p>
           </div>
 
           <button
@@ -167,6 +163,12 @@ function Checkout() {
             className={checkoutCSS["submit__address__form"]}
           >
             submit
+          </button>
+          <button
+            type="button"
+            onClick={() => modalRef.current.close()}
+          >
+            Cancel
           </button>
         </form>
       </dialog>
@@ -179,17 +181,17 @@ function Checkout() {
               modalRef.current.showModal();
             }}
           >
-            {userData ? "Change Address" : "Add Adress"}
+            {true ? "Change Address" : "Add Adress"}
           </button>
         </div>
 
-        {userData ? (
+        {true ? (
           <div>
             <p className="person__name">
               {userData?.firstName} {userData?.lastName} | {userData?.phoneNumber}
             </p>
             <p className="complete__address">
-              {userData?.streetNo} {userData?.baranggay}, {userData?.city} {userData?.province}
+              {userData?.address} | {userData.zipCode}
             </p>
           </div>
         ) : (

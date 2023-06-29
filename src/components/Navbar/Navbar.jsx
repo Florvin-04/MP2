@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link, json, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { animateScroll as scroll } from "react-scroll";
 import { useGlobalContext } from "../../AppContext/AppContext";
 import logo from "/image/Tanim-logo.png";
 import "./Navbar.css";
@@ -16,6 +17,10 @@ function Navbar() {
   if (location.pathname == "/login" || location.pathname == "/register") {
     return;
   }
+
+  const scrollToFooter = () => {
+    scroll.scrollToBottom();
+  };
 
   return (
     <>
@@ -53,19 +58,25 @@ function Navbar() {
               <li className="home-button">
                 <Link
                   className="nav-link"
-                  to="/home"
+                  to="/"
                 >
                   <strong>Home</strong>
                 </Link>
               </li>
 
               <li className="about-us">
-                <a
+                <Link
                   className="nav-link"
-                  href="#"
+                  activeclass="active"
+                  // to="footer"
+                  spy="true"
+                  smooth="true"
+                  offset={-70}
+                  duration={500}
+                  onClick={scrollToFooter}
                 >
                   <strong>About Us</strong>
-                </a>
+                </Link>
               </li>
 
               <li className="product">
@@ -146,20 +157,6 @@ function Navbar() {
           </div>
         </div>
       </nav>
-      {/* <Link
-        to="/product"
-        state={{ prevLocation: location.pathname }}
-      >
-        Product
-      </Link>
-
-      <Link
-        to="/cart"
-        state={{ prevLocation: location.pathname }}
-      >
-        Cart<sup>{`${getCartItemNumber() ? getCartItemNumber() : ""}`}</sup>
-      </Link>
-      <Link to="/login">Login</Link> */}
     </>
   );
 }

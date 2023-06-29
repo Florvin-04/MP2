@@ -102,3 +102,8 @@ select {
   }
 }
 
+:root {
+  --card-text-color: 0, 0%, 33%;
+  --neutral-green: 157, 94%, 39%;
+  --hover-color: 157, 80%, 71%;
+}

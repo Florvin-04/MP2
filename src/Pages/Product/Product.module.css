@@ -1,3 +1,11 @@
+.page-title{
+  text-align: center;
+  font-size: 3rem;
+  text-transform: uppercase;
+  padding-block-end: 1em;
+  /* color: #06bf77; */
+}
+
 .dropdown__category {
   /* margin-top: 3rem; */
   position: relative;
@@ -6,7 +14,7 @@
   display: inline-block;
 }
 .filter__category {
-  padding: 1em 5em 1em 1em;
+  padding: 1em 2em 1em 1em;
   text-align: left;
   /* background-color: hsl(var(--Primary-100)) ;
   border-color: hsl(var(--Primary-100));
@@ -62,4 +70,30 @@
   padding: 0.8em;
   border: 1px solid #06bf77;
   width: 20rem;
+  /* color: #06bf77 */
+}
+
+.filter-text {
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.01rem;
+  /* background-color: red; */
+}
+
+.category__list--item {
+  color: white;
+  /* font-weight: 600; */
+  letter-spacing: 0.01rem;
+}
+
+.no-plant-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: red; */
+  height: 20rem;
+}
+
+.no-plant-found p {
+  font-size: 2rem;
 }

@@ -1,10 +1,58 @@
+
 .card {
-  border: 1px solid black;
-  
-  cursor: pointer;
+  border: 1px solid hsl(var(--neutral-green));
+  /* cursor: pointer; */
 }
 
-.card-img-top{
-  aspect-ratio: 11 / 8;
+.card:hover {
+  background-color: hsl(157, 80%, 71%);
+}
+
+.card-img-top {
+  aspect-ratio: 12 / 8;
   object-fit: cover;
+}
+
+.card_link {
+  text-decoration: none;
+}
+
+.card-name {
+  color: hsl(var(--card-text-color));
+  font-weight: 600;
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+.star-rating {
+  display: flex;
+}
+.star-rating svg {
+  fill: rgb(185, 185, 3);
+}
+
+.card-price {
+  margin-top: 1rem;
+  color: hsl(var(--card-text-color));
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+.card-description {
+  margin-top: 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: hsl(var(--card-text-color));
+}
+
+.continue-reading-btn {
+  margin-top: 1rem;
+  padding: 0.3em;
+  background-color: hsl(var(--neutral-green));
+  color: white;
+  font-weight: 600;
 }

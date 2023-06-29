@@ -29,7 +29,7 @@ function Home() {
 
       <div className="container">
         <div className="featured_plant">
-          <h1>Rare Plants </h1>
+          <h1 className="featured_plants-title">Featured Plants </h1>
           <div className="row">
             {/* <!-- Card 1 --> */}
             {plants.map((plant) => {
