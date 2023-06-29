@@ -78,12 +78,12 @@ function Checkout() {
         //   itemCount: cart[plant.id].itemCount,
         // };
 
-        // setOrders([...orders, { id: [...checkout], address: userData.address }]);
+        setOrders([...orders, { id: [...checkout], address: userData.address }]);
 
-        setOrders((prevOrders) => [
-          ...prevOrders,
-          { id: [...checkout], address: userData.address },
-        ]);
+        // setOrders((prevOrders) => [
+        //   ...prevOrders,
+        //   { id: [...checkout], address: userData.address },
+        // ]);
 
         setCart((prevData) => ({
           ...prevData,
