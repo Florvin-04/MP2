@@ -15,6 +15,7 @@ const getDefaultCart = () => {
 
 const storedCart = localStorage.getItem("cart");
 const storedUserInfo = localStorage.getItem("userInfo");
+const storedOrders = localStorage.getItem("orders");
 
 export const AppProvider = ({ children }) => {
   const [plants, setPlants] = useState([]);
@@ -23,16 +24,23 @@ export const AppProvider = ({ children }) => {
   );
 
   const [userInfo, setUserInfo] = useState(JSON.parse(storedUserInfo) || null);
-
   const [cart, setCart] = useState(JSON.parse(storedCart) || getDefaultCart());
   const [checkout, setCheckout] = useState([]);
+  const [orders, setOrders] = useState(JSON.parse(storedOrders) || []);
   const [filterByCategory, setFilterByCategory] = useState("All");
   const [filterByName, setFilterByName] = useState("");
   const [loading, setLoading] = useState(false);
 
+  console.log(cart);
+  console.log(orders);
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem("orders", JSON.stringify(orders));
+  }, [orders]);
 
   const filter = () => {
     setLoading(true);
@@ -186,6 +194,8 @@ export const AppProvider = ({ children }) => {
         loggedIn,
         userInfo,
         setUserInfo,
+        orders,
+        setOrders,
 
         // setSearchCountry,
         // searchByRegion,

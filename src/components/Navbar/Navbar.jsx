@@ -64,6 +64,15 @@ function Navbar() {
                 </Link>
               </li>
 
+              <li className="home-button">
+                <Link
+                  className="nav-link"
+                  to="/orders"
+                >
+                  <strong>Orders</strong>
+                </Link>
+              </li>
+
               <li className="about-us">
                 <Link
                   className="nav-link"

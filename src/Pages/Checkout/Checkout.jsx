@@ -1,14 +1,25 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import checkoutCSS from "./Checkout.module.css";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useGlobalContext } from "../../AppContext/AppContext";
+import { forEach } from "lodash";
 
 function Checkout() {
   const navigate = useNavigate();
-  const { plants, cart, getTotalAmount, userInfo, setCart, checkout } = useGlobalContext();
+  const {
+    plants,
+    cart,
+    getTotalAmount,
+    userInfo,
+    setCart,
+    setCheckout,
+    checkout,
+    orders,
+    setOrders,
+  } = useGlobalContext();
   const modalRef = useRef();
   const [userData, setUserData] = useState({
     firstName: userInfo.firstName,
@@ -51,8 +62,6 @@ function Checkout() {
     onSubmit,
   });
 
-  console.log(errors);
-
   function submitOrder() {
     // if (!userData) {
     //   alert("Adrress is Required");
@@ -62,6 +71,20 @@ function Checkout() {
     console.log("order Submit");
     plants.map((plant) => {
       if (cart[plant.id].itemCount !== 0 && checkout.includes(plant.id)) {
+        // let newOrder = {
+        //   id: plant.id,
+        //   address: userData.address,
+        //   zipCode: userData.zipCode,
+        //   itemCount: cart[plant.id].itemCount,
+        // };
+
+        // setOrders([...orders, { id: [...checkout], address: userData.address }]);
+
+        setOrders((prevOrders) => [
+          ...prevOrders,
+          { id: [...checkout], address: userData.address },
+        ]);
+
         setCart((prevData) => ({
           ...prevData,
           [plant.id]: {
@@ -72,8 +95,7 @@ function Checkout() {
       }
     });
 
-    console.log(cart);
-
+    setCheckout([]);
     navigate("/product");
   }
 
