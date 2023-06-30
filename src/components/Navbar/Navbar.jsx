@@ -144,6 +144,7 @@ function Navbar() {
                       onClick={() => {
                         localStorage.removeItem("keepMeLoggedIn");
                         localStorage.removeItem("cart");
+                        localStorage.removeItem("orders");
                         navigate("/product");
                         window.location.reload();
                       }}

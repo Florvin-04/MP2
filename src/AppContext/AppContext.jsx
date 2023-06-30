@@ -146,9 +146,9 @@ export const AppProvider = ({ children }) => {
   const updateCartValue = (amount, itemId) => {
     if (isNaN(amount)) return;
 
-    if (amount <= 0) {
-      prompt("sure");
-    }
+    // if (amount <= 0) {
+    //   prompt("sure");
+    // }
     // // console.log(amount + 10);
     // let updatedAvailability;
     // let product = cart[itemId];

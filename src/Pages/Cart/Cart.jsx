@@ -19,6 +19,9 @@ function Cart() {
   } = useGlobalContext();
 
   const navigate = useNavigate();
+
+  const [showModal, setShowModal] = useState(false);
+
   // const location = useLocation();
   // console.log(location);
 
@@ -58,7 +61,7 @@ function Cart() {
 
   if (hasNonZeroItemCount) {
     return (
-      <div className="container">
+      <div className={`${CartCSS["no_item_in_cart"]} container`}>
         <p>No Item In Cart</p>
       </div>
     );
@@ -104,7 +107,16 @@ function Cart() {
                     </div>
                     <div className={CartCSS["handleChangeContainer"]}>
                       <div>
-                        <button onClick={() => removeToCart(plant.id)}>
+                        <button
+                          data-bs-toggle={`${cart[plant.id]?.itemCount == 1 && "modal"}`}
+                          data-bs-target="#staticBackdrop"
+                          onClick={() => {
+                            if (cart[plant.id]?.itemCount != 1) {
+                              setShowModal(true);
+                              removeToCart(plant.id);
+                            }
+                          }}
+                        >
                           <svg
                             width="12"
                             height="4"
@@ -163,13 +175,67 @@ function Cart() {
                         >
                           View Product
                         </Link>
-
-                        <button
+                        {/* <button
                           className={`btn btn-danger ${CartCSS["removeItemToCart"]}`}
                           onClick={() => removeItem(plant.id)}
                         >
                           <FaTrashAlt />
+                        </button> */}
+                        {/* <!-- Button trigger modal --> */}
+                        <button
+                          className={`btn btn-danger ${CartCSS["removeItemToCart"]}`}
+                          data-bs-toggle="modal"
+                          data-bs-target="#staticBackdrop"
+                          // onClick={() => removeItem(plant.id)}
+                        >
+                          <FaTrashAlt />
                         </button>
+                        {/* <!-- Modal --> */}
+                        <div
+                          className="modal fade modal-sm"
+                          id="staticBackdrop"
+                          data-bs-backdrop="static"
+                          data-bs-keyboard="false"
+                          tabIndex="-1"
+                          aria-labelledby="staticBackdropLabel"
+                          aria-hidden="true"
+                        >
+                          <div className="modal-dialog">
+                            <div className="modal-content">
+                              <div className="modal-header">
+                                <h1
+                                  className="modal-title fs-5"
+                                  id="staticBackdropLabel"
+                                >
+                                  {plant.name}
+                                </h1>
+                                {/* <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
+                              </div>
+                              <div className="modal-body">
+                                Are you sure you want to remove this item
+                              </div>
+                              <div className="modal-footer">
+                                <button
+                                  type="button"
+                                  className="btn btn-secondary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Close
+                                </button>
+                                <button
+                                  type="button"
+                                  className="btn btn-primary"
+                                  data-bs-dismiss="modal"
+                                  onClick={() => {
+                                    removeItem(plant.id);
+                                  }}
+                                >
+                                  Understood
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

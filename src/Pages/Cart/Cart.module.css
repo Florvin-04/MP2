@@ -45,6 +45,9 @@
 
 .cart_item-container:hover .removeItemToCart{
   visibility: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -131,6 +134,14 @@
 
 .total_amount{
     text-align: right;
+}
+
+.no_item_in_cart{
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10rem;
 }
 
 @media (min-width: 600px) {
