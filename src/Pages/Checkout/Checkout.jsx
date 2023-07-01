@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import checkoutCSS from "./Checkout.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -78,7 +78,15 @@ function Checkout() {
         //   itemCount: cart[plant.id].itemCount,
         // };
 
-        setOrders([...orders, { id: [...checkout], address: userData.address }]);
+        setOrders([
+          ...orders,
+          {
+            id: [...checkout],
+            address: userData.address,
+            phoneNumber: userData.phoneNumber,
+            itemCount: cart[plant.id].itemCount,
+          },
+        ]);
 
         // setOrders((prevOrders) => [
         //   ...prevOrders,
@@ -101,6 +109,7 @@ function Checkout() {
 
   return (
     <div className={`container ${checkoutCSS["checkout__parent"]}`}>
+      <h2 className={checkoutCSS["checkout__title"]}>checkout</h2>
       <dialog ref={modalRef}>
         Delivery Details
         <form
@@ -223,51 +232,72 @@ function Checkout() {
 
       <div className={checkoutCSS["checkout__container--parent"]}>
         <div className={checkoutCSS["checkout__items--container"]}>
-          {plants.map((plant) => {
-            if (cart[plant.id].itemCount !== 0 && checkout.includes(plant.id)) {
-              return (
-                <div
-                  key={plant.id}
-                  className={checkoutCSS["checkout__wrapper"]}
-                >
+          {checkout.length === 0 ? (
+            <div className={checkoutCSS["no_item_in_checkou--container"]}>
+              <p className={checkoutCSS["no_item_in_checkout_text"]}>
+                Checkout your item in cart first
+              </p>
+              <Link to="/cart">Go to your cart</Link>
+            </div>
+          ) : (
+            plants.map((plant) => {
+              if (cart[plant.id].itemCount !== 0 && checkout.includes(plant.id)) {
+                return (
                   <div
                     key={plant.id}
-                    className={checkoutCSS["checkout__items"]}
+                    className={checkoutCSS["checkout__wrapper"]}
                   >
-                    <img
-                      src={plant.img}
-                      alt={plant.name}
-                    />
-                    <div className={checkoutCSS["checkout__item--details"]}>
-                      <div className={checkoutCSS["item__descripttion"]}>
-                        <p className={checkoutCSS["item--name"]}>{plant.name}</p>
-                        <p className="category">{plant.family} Plant</p>
+                    <div
+                      key={plant.id}
+                      className={checkoutCSS["checkout__items"]}
+                    >
+                      <img
+                        src={plant.img}
+                        alt={plant.name}
+                      />
+                      <div className={checkoutCSS["checkout__item--details"]}>
+                        <div className={checkoutCSS["item__descripttion"]}>
+                          <p className={checkoutCSS["item--name"]}>{plant.name}</p>
+                          <p className={checkoutCSS["category"]}>{plant.family} Plant</p>
+                        </div>
+                        <p className={checkoutCSS["item--price"]}>
+                          ₱{plant.price} <span>x {cart[plant.id].itemCount}</span>
+                        </p>
                       </div>
-                      <p className={checkoutCSS["item--price"]}>
-                        PHP {plant.price} <span>x {cart[plant.id].itemCount}</span>
-                      </p>
                     </div>
+                    <p className={checkoutCSS["checkout__subtotal"]}>
+                      SubTotal: <span>₱{cart[plant.id].itemCount * plant.price}</span>
+                    </p>
                   </div>
-                  <p className={checkoutCSS["checkout__subtotal"]}>
-                    SubTotal {cart[plant.id].itemCount * plant.price}{" "}
-                  </p>
-                </div>
-              );
-            }
-          })}
+                );
+              }
+            })
+          )}
+
+          {}
         </div>
 
         <div className={checkoutCSS["checkout__totalAmount"]}>
           <p>
-            Merchendise subtotal: <span>₱{getTotalAmount()}</span>
+            Merchendise subtotal:
+            <span>
+              <strong>₱{getTotalAmount()}</strong>
+            </span>
           </p>
           <p>
-            Shipping fee subtotal: <span>Free</span>
+            Shipping fee subtotal:
+            <span>
+              <strong>Free</strong>
+            </span>
           </p>
-          <p>
-            Total Payment: <span>₱{getTotalAmount()}</span>
+          <p className={checkoutCSS["checkout__totalPayment"]}>
+            Total Payment:
+            <span>
+              <strong>₱{getTotalAmount()}</strong>
+            </span>
           </p>
           <button
+            disabled={checkout.length === 0 ? true : false}
             className={`btn btn-primary ${checkoutCSS["checkout_submit_btn"]}`}
             onClick={submitOrder}
           >

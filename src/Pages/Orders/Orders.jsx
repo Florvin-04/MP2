@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Orders.css";
 import { v4 as uuidv4 } from "uuid";
 
 import { useGlobalContext } from "../../AppContext/AppContext";
@@ -6,8 +7,12 @@ import { useGlobalContext } from "../../AppContext/AppContext";
 function Orders() {
   const { orders, plants } = useGlobalContext();
 
-  const [itemOrder, setItemOrder] = useState([]);
+  const [itemOrders, setItemOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCopyId, setIsCopyId] = useState({
+    id: null,
+    state: false,
+  });
 
   useEffect(() => {
     const updatedItemOrder = [];
@@ -22,33 +27,97 @@ function Orders() {
             orderId: uniqueId,
             id: matchingProduct.id,
             name: matchingProduct.name,
+            img: matchingProduct.img,
+            price: matchingProduct.price,
             address: order.address,
+            quantity: order.itemCount,
+            phoneNumber: order.phoneNumber,
           });
         }
       }
     }
 
-    setItemOrder(updatedItemOrder);
+    setItemOrders(updatedItemOrder);
     setIsLoading(false);
   }, [orders, plants]);
 
+  const copyId = async (id) => {
+    try {
+      await navigator.clipboard.writeText(id);
+      setIsCopyId(() => ({
+        id: id,
+        state: true,
+      }));
+
+      setTimeout(() => {
+        setIsCopyId((prevState) => ({
+          ...prevState,
+          state: false,
+        }));
+      }, 2000);
+    } catch (error) {
+      console.error("Failed to copy text:", error);
+    }
+  };
+
   return (
     <div className="container">
-      <h2>Orders</h2>
+      <h2 className="orders__title">Orders</h2>
+      <div className="order__items--wrapper">
+        {isLoading ? (
+          <p>Loading...</p> // Render a loading state
+        ) : itemOrders.length > 0 ? (
+          itemOrders.map((item) => (
+            <div key={item.orderId}>
+              <div className="item__order--container">
+                <div className="order__id--wrapper">
+                  <p className="order__item--id">
+                    Order ID: <span>{item.orderId}</span>
+                  </p>
+                  <button
+                    className="copyText--btn"
+                    onClick={() => copyId(item.orderId)}
+                    // disabled={}
+                  >
+                    {isCopyId.id === item.orderId && isCopyId.state ? "Copied!" : "Copy"}
+                  </button>
+                </div>
+                <div className="item__order__description--wrapper">
+                  <img
+                    src={item.img}
+                    alt=""
+                  />
 
-      {isLoading ? (
-        <p>Loading...</p> // Render a loading state
-      ) : itemOrder.length > 0 ? (
-        itemOrder.map((item) => (
-          <div key={item.orderId}>
-            <p>
-              {item.orderId} {item.id} {item.name}
-            </p>
-          </div>
-        ))
-      ) : (
-        <p>No orders found.</p> // Render a message if there are no orders
-      )}
+                  <div className="item__order__description">
+                    <p className="item__order--name">{item.name}</p>
+                    <div className="item__order--quantity">
+                      <p>
+                        <span className="order__item--price">₱{item.price}</span>
+                        <span>x{item.quantity}</span>
+                      </p>
+
+                      <p className="order__item--totalPrice">
+                        Total: ₱{item.price * item.quantity}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="order__item--status--address">
+                  <p className="order__item--address">
+                    Delivery Address:{" "}
+                    <span>
+                      {item.address} | {item.phoneNumber}
+                    </span>
+                  </p>
+                  <div className="order__item--status">Status: Pending</div>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No orders found.</p> // Render a message if there are no orders
+        )}
+      </div>
     </div>
   );
 }

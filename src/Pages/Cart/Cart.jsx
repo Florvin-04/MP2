@@ -74,7 +74,7 @@ function Cart() {
           return (
             <div
               key={plant.id}
-              className={`${CartCSS["parentCartContainer"]}`}
+              className={`${CartCSS["parentCartContainer"]} ${CartCSS["chosen"]}`}
             >
               <div className={CartCSS["cart__container"]}>
                 <input
@@ -103,7 +103,7 @@ function Cart() {
                   <div className={CartCSS["cart__description--container"]}>
                     <div className={CartCSS["plant__info"]}>
                       <p className={CartCSS["plant_name"]}>{plant.name}</p>
-                      <p className={CartCSS["plant_price"]}>PHP {plant.price}</p>
+                      <p className={CartCSS["plant_price"]}>₱{plant.price}</p>
                     </div>
                     <div className={CartCSS["handleChangeContainer"]}>
                       <div>
@@ -242,7 +242,7 @@ function Cart() {
                 </label>
               </div>
               <p className={CartCSS["sub_total"]}>
-                SubTotal: {cart[plant.id].itemCount * plant.price}
+                SubTotal: <span>₱{cart[plant.id].itemCount * plant.price}</span>
               </p>
             </div>
           );
@@ -251,9 +251,9 @@ function Cart() {
 
       {getTotalAmount() ? (
         <div className={CartCSS["checkout"]}>
-          <p className={CartCSS["total_amount"]}>Total Amount: {getTotalAmount()}</p>
+          <p className={CartCSS["total_amount"]}>Total Amount: <span>₱{getTotalAmount()}</span></p>
           <button
-            className="btn btn-primary"
+            className={`btn btn-primary ${CartCSS["cart__checkout--btn"]}`}
             onClick={() => {
               navigate("/checkout");
             }}
@@ -262,7 +262,7 @@ function Cart() {
           </button>
         </div>
       ) : (
-        <p>Select Item to checkout</p>
+        <p className={CartCSS["no-selected-text-message"]}>Select an item you want to checkout</p>
       )}
     </div>
   );

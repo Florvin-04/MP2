@@ -1,3 +1,10 @@
+.checkout__title {
+  text-align: center;
+  font-size: 2rem;
+  padding-block: 1em;
+  text-transform: uppercase;
+}
+
 /* ADDRESS */
 
 .change__address {
@@ -27,8 +34,8 @@
   font-size: 0.9rem;
 }
 
-.submit__address__form{
-    margin-top: 1rem;
+.submit__address__form {
+  margin-top: 1rem;
 }
 
 /* CHECKOUT ITEMS */
@@ -52,7 +59,17 @@
   margin-top: 1em;
 }
 
+.no_item_in_checkou--container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 10rem;
+}
 
+.no_item_in_checkout_text {
+  /* background-color: red; */
+}
 
 .checkout__items--container img {
   width: 10rem;
@@ -64,7 +81,10 @@
   display: flex;
   gap: 1rem;
   padding-right: 1em;
+}
 
+.checkout__wrapper {
+  /* outline: 1px solid red; */
 }
 
 .checkout__item--details {
@@ -81,17 +101,31 @@
 
 .item--name {
   font-size: 1.9rem;
+  color: hsl(var(--card-text-color));
+  font-weight: 600;
 }
 
 .item--price {
   display: flex;
   justify-content: space-between;
+  color: hsl(var(--card-text-color));
+  font-weight: 600;
   /* outline: 1px solid red; */
+}
+
+.category {
+  color: hsl(var(--card-text-color));
 }
 
 .checkout__subtotal {
   text-align: right;
   padding: 0.5em 1em;
+  color: hsl(var(--card-text-color));
+  /* font-weight: 600; */
+}
+
+.checkout__subtotal span {
+  font-weight: 600;
 }
 
 .checkout__totalAmount {
@@ -100,6 +134,11 @@
   padding: 1em;
   background-color: rgb(243, 243, 243);
   margin-top: 2rem;
+  color: rgb(0, 0, 0, 0.55);
+}
+
+.checkout__totalPayment {
+  margin-top: 1.5rem;
 }
 
 .checkout__totalAmount > p {
@@ -112,9 +151,8 @@
   float: right;
 }
 
-
 @media (min-width: 800px) {
-  .checkout__container--parent{
+  .checkout__container--parent {
     grid-template-columns: 2fr 1fr;
     gap: 1rem;
     height: 30.1rem;
@@ -122,14 +160,14 @@
 
   .checkout__items--container {
     /* outline: 2px solid red; */
-  
+
     /* padding-block: .5em; */
-  
+
     overflow-y: scroll;
     height: 30rem;
   }
 
-  .checkout__totalAmount{
+  .checkout__totalAmount {
     margin-top: 0;
   }
 }
