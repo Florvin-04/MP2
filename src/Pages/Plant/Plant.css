@@ -143,6 +143,16 @@ button {
   font-size: 1.8rem;
 }
 
+.product__star-rating {
+  margin-top: 0;
+  display: flex;
+}
+.product__star-rating svg {
+  fill: gold;
+  /* width: 27px;
+height: 50px; */
+}
+
 .product__description {
   color: hsl(var(--card-text-color));
   /* font-weight: 600; */
@@ -289,7 +299,7 @@ button {
     width: 85%;
   }
 
-  .product__information > * + * {
+  .product__information > *:not(.product__star-rating) + *:not(.product__star-rating) {
     margin-top: 1rem;
     /* outline: 1px solid red; */
   }

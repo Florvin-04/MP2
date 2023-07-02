@@ -4,6 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useGlobalContext } from "../../AppContext/AppContext";
 import { PiArrowFatLeftFill } from "react-icons/pi";
+import { AiFillStar } from "react-icons/ai";
 
 function Plant() {
   const { plants, cart, loggedIn, buyNow, setCart } = useGlobalContext();
@@ -159,15 +160,21 @@ function Plant() {
                     src={plant.img}
                     alt={plant.name}
                   />
-                 
                 </div>
                 <div className="product__information">
                   <p className="product__category">{plant.family} Plant</p>
                   <h1 className="product__name">{plant.name}</h1>
+                  <div className="product__star-rating">
+                    <AiFillStar />
+                    <AiFillStar />
+                    <AiFillStar />
+                    <AiFillStar />
+                    <AiFillStar />
+                  </div>
                   <p className="product__description">{plant.description}</p>
                   <div className="product__price--container">
                     <p className="discounted__price">
-                    ₱{plant.price}
+                      ₱{plant.price}
                       {/* <span className="percentage-off">50%</span> */}
                     </p>
                     <p className="actual__price">₱250.00</p>
