@@ -41,6 +41,25 @@ button {
 
 /* gobal style END */
 
+.plant__modal--buttons button:active {
+  background-color: hsl(var(--neutral-green), 0.7) !important;
+  border: 2px solid hsl(var(--neutral-green)) !important;
+}
+
+.plant__modal--buttons button:first-child {
+  background-color: transparent;
+  border: 2px solid hsl(var(--neutral-green));
+  color: hsl(var(--neutral-green));
+  font-weight: 600;
+}
+
+.plant__modal--buttons button:last-child {
+  background-color: hsl(var(--neutral-green));
+  border: 2px solid hsl(var(--neutral-green));
+  color: white;
+  font-weight: 600;
+}
+
 /* product .item__information */
 
 .product__information--container {
@@ -110,7 +129,7 @@ button {
   margin-top: 1rem;
 }
 
-.company-name {
+.product__category {
   text-transform: uppercase;
   font-weight: 600;
   color: hsl(var(--Primary-Orange));
@@ -118,19 +137,20 @@ button {
 }
 
 .product__name {
-  color: hsl(var(--Neutral-Very-dark-blue));
+  color: hsl(var(--card-text-color));
+  font-weight: 700;
 
   font-size: 1.8rem;
 }
 
 .product__description {
-  color: hsl(var(--Neutral-Dark-grayish-blue));
+  color: hsl(var(--card-text-color));
   /* font-weight: 600; */
 }
 
 .discounted__price {
-  color: hsl(var(--Neutral-Very-dark-blue));
-  font-weight: 700;
+  color: hsl(var(--card-text-color));
+  font-weight: 650;
   font-size: 1.7rem;
 
   position: relative;
@@ -188,7 +208,6 @@ button {
 
   display: flex;
   justify-content: space-between;
-
 
   background-color: hsl(var(--Neutral-Light-grayish-blue));
 }

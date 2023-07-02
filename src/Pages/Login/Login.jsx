@@ -65,7 +65,7 @@ function Login() {
     if (isValid) {
       if (formState) {
         localStorage.setItem("keepMeLoggedIn", JSON.stringify(formState.userName));
-        console.log("LogIn");
+        // console.log("LogIn");
       }
 
       navigate(location.state?.prevUrl || "/product");

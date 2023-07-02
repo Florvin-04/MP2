@@ -45,7 +45,7 @@ function App() {
 
   // console.log(cart);
 
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
   return (
     <>

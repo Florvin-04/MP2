@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Plant.css";
+import { Modal, Button } from "react-bootstrap";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useGlobalContext } from "../../AppContext/AppContext";
 import { PiArrowFatLeftFill } from "react-icons/pi";
@@ -7,16 +8,19 @@ import { PiArrowFatLeftFill } from "react-icons/pi";
 function Plant() {
   const { plants, cart, loggedIn, buyNow, setCart } = useGlobalContext();
   const { id } = useParams();
+  const modalRef = useRef(null);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const INITIAL_VALUE = {
     plantCount: 1,
     plantId: Number(id),
   };
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const [quantity, setQuanity] = useState(INITIAL_VALUE);
-  const [buttonClicked, setButtonClicked] = useState(INITIAL_VALUE);
+  // const [buttonClicked, setButtonClicked] = useState(INITIAL_VALUE);
+  const [showModal, setShowModal] = useState(false);
 
   function addPlant(e, id) {
     const target = e.target;
@@ -45,12 +49,9 @@ function Plant() {
     //   });
 
     if (!loggedIn) {
-      alert("Login First");
-      navigate("/login", {
-        state: {
-          prevUrl: location.pathname,
-        },
-      });
+      setShowModal(true);
+
+      return;
     }
 
     setCart((prevData) => ({
@@ -65,9 +66,45 @@ function Plant() {
   }
 
   // console.log(quantity);
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <div>
+      <Modal
+        size="sm"
+        show={showModal}
+        onHide={closeModal}
+        // onHide={() => setSmShow(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm">Warning</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>You must log-in first</Modal.Body>
+        <Modal.Footer className="plant__modal--buttons">
+          <Button
+            variant="secondary"
+            onClick={closeModal}
+          >
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              navigate("/login", {
+                state: {
+                  prevUrl: location.pathname,
+                },
+              });
+            }}
+          >
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <div className="container">
         <button
           style={{ backgroundColor: "transparent" }}
@@ -122,119 +159,18 @@ function Plant() {
                     src={plant.img}
                     alt={plant.name}
                   />
-                  {/* <img
-                    carousel-child="2"
-                    className="product__img"
-                    src="./images/image-product-2.jpg"
-                    alt=""
-                  />
-                  <img
-                    carousel-child="3"
-                    className="product__img"
-                    src="./images/image-product-3.jpg"
-                    alt=""
-                  />
-                  <img
-                    carousel-child="4"
-                    className="product__img"
-                    src="./images/image-product-4.jpg"
-                    alt=""
-                  /> */}
-
-                  {/* <button
-                    className="prev__btn"
-                    data-caorusel-button="prev"
-                  >
-                    <svg
-                      width="12"
-                      height="18"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M11 1 3 9l8 8"
-                        stroke="#1D2026"
-                        stroke-width="3"
-                        fill="none"
-                        fillRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    className="next__btn"
-                    data-caorusel-button="next"
-                  >
-                    <svg
-                      width="13"
-                      height="18"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="m2 1 8 8-8 8"
-                        stroke="#1D2026"
-                        stroke-width="3"
-                        fill="none"
-                        fillRule="evenodd"
-                      />
-                    </svg>
-                  </button> */}
-
-                  {/* <div
-                    className="product__tumbnail-container"
-                    tumbnail-carousel-container
-                  >
-                    <div
-                      data-active
-                      carousel-thumbnail="1"
-                      className="product__tumbnail--item active"
-                    >
-                      <img
-                        className="product__tumbnail"
-                        src="./images/image-product-1-thumbnail.jpg"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      carousel-thumbnail="2"
-                      className="product__tumbnail--item"
-                    >
-                      <img
-                        className="product__tumbnail"
-                        src="./images/image-product-2-thumbnail.jpg"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      carousel-thumbnail="3"
-                      className="product__tumbnail--item"
-                    >
-                      <img
-                        className="product__tumbnail"
-                        src="./images/image-product-3-thumbnail.jpg"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      carousel-thumbnail="4"
-                      className="product__tumbnail--item"
-                    >
-                      <img
-                        className="product__tumbnail"
-                        src="./images/image-product-4-thumbnail.jpg"
-                        alt=""
-                      />
-                    </div>
-                  </div> */}
+                 
                 </div>
                 <div className="product__information">
-                  <p className="company-name">Plant</p>
+                  <p className="product__category">{plant.family} Plant</p>
                   <h1 className="product__name">{plant.name}</h1>
                   <p className="product__description">{plant.description}</p>
                   <div className="product__price--container">
                     <p className="discounted__price">
-                      PHP{plant.price}
+                    ₱{plant.price}
                       {/* <span className="percentage-off">50%</span> */}
                     </p>
-                    <p className="actual__price">$250.00</p>
+                    <p className="actual__price">₱250.00</p>
                   </div>
 
                   <div className="add-to-cart--container">
@@ -321,12 +257,7 @@ function Plant() {
                       className="add-to-cart--bnt"
                       onClick={() => {
                         if (!loggedIn) {
-                          alert("login first");
-                          navigate("/login", {
-                            state: {
-                              prevUrl: location.pathname,
-                            },
-                          });
+                          setShowModal(true);
                           return;
                         }
                         navigate("/checkout");

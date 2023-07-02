@@ -11,7 +11,7 @@ function PlantCard(plant) {
   // console.log(plant.img);
 
   return (
-    <div className="plant-card__container col-lg-4 col-md-6 col-sm-6 mb-4">
+    <div className="plant-card__container col-lg-3 col-md-6 col-sm-6 mb-4">
       <Link
         // type="button"
         className="card_link"
@@ -33,9 +33,9 @@ function PlantCard(plant) {
               <AiFillStar />
             </div>
             <p className="card-price">₱{plant.price}</p>
-            <p className="card-description">{plant.description}</p>
+            {/* <p className="card-description">{plant.description}</p> */}
             {/* <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> */}
-            <button className="continue-reading-btn">Continue Reading</button>
+            {/* <button className="continue-reading-btn">Continue Reading</button> */}
           </div>
         </div>
       </Link>

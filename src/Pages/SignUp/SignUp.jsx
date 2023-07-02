@@ -123,14 +123,14 @@ function SignUp() {
     }
 
     if (formState.password !== formState.confirmPassword) {
-      console.log("password Dont match");
+      // console.log("password Dont match");
       return;
     }
 
     localStorage.setItem("userInfo", JSON.stringify(formState))
 
     setUserInfo(formState);
-    console.log("Submit");
+    // console.log("Submit");
 
     navigate("/login");
   }

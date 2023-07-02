@@ -19,14 +19,23 @@ function Footer() {
       <div className="container">
         <div className="row">
           <div className="col-lg-4 col-md-6">
-            <h4 id="about_us">About Us</h4>
+            <h4 id="about_us">
+              <strong>About Us</strong>
+            </h4>
             <p id="footer_content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae hendrerit
-              lacus.
+              Welcome to our website, your premier destination for exquisite exotic plants. At{" "}
+              <strong>TANIM</strong>, we are passionate about bringing the beauty and wonder of rare
+              and unique plant species right to your doorstep. We invite you to embark on a
+              botanical journey with us and explore the extraordinary world of exotic plants.
+              Whether you're looking to expand your plant collection, create a stunning indoor
+              oasis, or find a unique gift for a fellow plant lover, <strong>TANIM</strong> is your
+              ultimate source for the extraordinary.
             </p>
           </div>
           <div className="col-lg-4 col-md-6">
-            <h4 id="follow_us">Follow Us</h4>
+            <h4 id="follow_us">
+              <strong>Follow Us</strong>
+            </h4>
             <ul className="social-media">
               <li>
                 <a
@@ -85,9 +94,20 @@ function Footer() {
             </ul>
           </div>
           <div className="col-lg-4 col-md-12">
-            <h4 id="contact_us">Contact Us</h4>
-            <p id="footer_content">Email: info@example.com</p>
+            <h4 id="contact_us">
+              <strong>Contact Us</strong>
+            </h4>
+            <p id="footer_content">Facebook: TanimExoticsPh</p>
+            <p id="footer_content">Twitter: @TanimExoticsPh</p>
+            <p id="footer_content">Instagram: TanimExoticsPh</p>
+            <p id="footer_content">Email: Tanim_RealExotics@gmail.com</p>
             <p id="footer_content">Phone: 123-456-7890</p>
+          </div>
+          <div
+            className="col-lg-12 col-md-12 mt-4 text-center"
+            id="copy"
+          >
+            <p>© 2023 T A N I M. All rights reserved.</p>
           </div>
         </div>
       </div>

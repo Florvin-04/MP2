@@ -31,8 +31,8 @@ export const AppProvider = ({ children }) => {
   const [filterByName, setFilterByName] = useState("");
   const [loading, setLoading] = useState(false);
 
-  console.log(cart);
-  console.log(orders);
+  // console.log(cart);
+  // console.log(orders);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));

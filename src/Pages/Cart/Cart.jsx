@@ -194,7 +194,7 @@ function Cart() {
                         </button>
                         {/* <!-- Modal --> */}
                         <div
-                          className="modal fade modal-sm"
+                          className="modal fade"
                           id="staticBackdrop"
                           data-bs-backdrop="static"
                           data-bs-keyboard="false"
@@ -216,13 +216,14 @@ function Cart() {
                               <div className="modal-body">
                                 Are you sure you want to remove this item
                               </div>
-                              <div className="modal-footer">
+
+                              <div className={`modal-footer ${CartCSS["cart__modal--btn"]}`}>
                                 <button
                                   type="button"
                                   className="btn btn-secondary"
                                   data-bs-dismiss="modal"
                                 >
-                                  Close
+                                  Cancel
                                 </button>
                                 <button
                                   type="button"
@@ -232,7 +233,7 @@ function Cart() {
                                     removeItem(plant.id);
                                   }}
                                 >
-                                  Understood
+                                  Confirm
                                 </button>
                               </div>
                             </div>
