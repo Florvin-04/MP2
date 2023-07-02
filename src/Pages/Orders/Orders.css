@@ -125,6 +125,29 @@
   font-weight: 700;
 }
 
+.no_orders_found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  height: 20rem;
+  font-size: 1.5rem;
+}
+
+.no_orders_found p {
+  font-weight: 700;
+}
+.no_orders_found a {
+  text-decoration: none;
+  background-color: hsl(var(--neutral-green));
+  color: white;
+  padding: .2em;
+  border-radius: .3rem;
+  font-size: .9em;
+  font-weight: 600;
+}
+
 @media (min-width: 600px) {
   .item__order__description--wrapper {
     display: flex;

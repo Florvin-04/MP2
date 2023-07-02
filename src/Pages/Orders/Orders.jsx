@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./Orders.css";
 import { v4 as uuidv4 } from "uuid";
 
+import { Link, NavLink } from "react-router-dom";
+
 import { useGlobalContext } from "../../AppContext/AppContext";
 
 function Orders() {
@@ -115,7 +117,10 @@ function Orders() {
             </div>
           ))
         ) : (
-          <p>No orders found.</p> // Render a message if there are no orders
+          <div className="no_orders_found">
+            <p>No orders found.</p>
+            <NavLink to="/cart">Go to cart page</NavLink>
+          </div>
         )}
       </div>
     </div>

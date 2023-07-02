@@ -39,8 +39,8 @@ function Checkout() {
       .positive()
       .integer()
       .required("Phone Number is Required."),
-    zipCode: yup.number().typeError("Must be a number.").required(),
-    address: yup.string().required(),
+    zipCode: yup.number().typeError("Must be a number.").required("Zip code is required"),
+    address: yup.string().required("Address is required"),
   });
 
   function onSubmit(values) {
@@ -110,11 +110,14 @@ function Checkout() {
   return (
     <div className={`container ${checkoutCSS["checkout__parent"]}`}>
       <h2 className={checkoutCSS["checkout__title"]}>checkout</h2>
-      <dialog ref={modalRef}>
-        Delivery Details
+      <dialog
+        className={checkoutCSS["checkout__modal__form"]}
+        ref={modalRef}
+      >
+        <h2>Delivery Address Details</h2>
         <form
           className={checkoutCSS["address__form"]}
-          action=""
+          method="dialog"
           onSubmit={handleSubmit}
         >
           <div>
@@ -172,7 +175,7 @@ function Checkout() {
               value={values.zipCode}
               onChange={handleChange}
             />
-            <p>{errors.baranggay}</p>
+            <p>{errors.zipCode}</p>
           </div>
 
           <div>
@@ -186,21 +189,23 @@ function Checkout() {
               value={values.address}
               onChange={handleChange}
             />
-            <p>{errors.streetNo}</p>
+            <p>{errors.address}</p>
           </div>
 
-          <button
-            type="submit"
-            className={checkoutCSS["submit__address__form"]}
-          >
-            submit
-          </button>
-          <button
-            type="button"
-            onClick={() => modalRef.current.close()}
-          >
-            Cancel
-          </button>
+          <div className={checkoutCSS["form__buttons--container"]}>
+            <button
+              type="submit"
+              className={checkoutCSS["submit__address__form--btn"]}
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              onClick={() => modalRef.current.close()}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </dialog>
 
@@ -208,6 +213,7 @@ function Checkout() {
         <div className={checkoutCSS["change__address"]}>
           <p>Address Delivery</p>
           <button
+          className="btn btn-primary"
             onClick={() => {
               modalRef.current.showModal();
             }}
@@ -234,9 +240,7 @@ function Checkout() {
         <div className={checkoutCSS["checkout__items--container"]}>
           {checkout.length === 0 ? (
             <div className={checkoutCSS["no_item_in_checkou--container"]}>
-              <p className={checkoutCSS["no_item_in_checkout_text"]}>
-                Checkout your item in cart first
-              </p>
+              <p>Checkout your item in cart first</p>
               <Link to="/cart">Go to your cart</Link>
             </div>
           ) : (

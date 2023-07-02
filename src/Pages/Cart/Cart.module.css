@@ -16,6 +16,12 @@
   padding-bottom: 3rem;
 }
 
+.plant__wrapper > h2 {
+ text-align: center;
+ font-size: 2rem;
+ font-weight: 700;
+}
+
 .parentCartContainer {
   margin-top: 2rem;
 }
@@ -149,17 +155,31 @@
 }
 
 .total_amount span {
-
   font-weight: 700;
-
 }
 
 .no_item_in_cart {
   font-size: 2rem;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
-  height: 10rem;
+  gap: 1rem;
+  height: 20rem;
+}
+
+.no_item_in_cart p {
+  font-weight: 600;
+}
+
+.no_item_in_cart a {
+  text-decoration: none;
+  background-color: hsl(var(--neutral-green));
+  color: white;
+  padding: 0.2em;
+  border-radius: 0.3rem;
+  font-size: 0.7em;
+  font-weight: 600;
 }
 
 .cart__checkout--btn {
@@ -169,7 +189,7 @@
   font-size: 1.2rem;
 }
 
-.no-selected-text-message{
+.no-selected-text-message {
   display: flex;
   align-items: center;
   justify-content: center;

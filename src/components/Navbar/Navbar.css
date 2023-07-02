@@ -102,16 +102,21 @@
   /* outline: 1px solid red; */
 }
 
-.user-info {
-  outline: 1px solid red;
+.user-info__logout {
+  border: 1px solid hsl(var(--neutral-green));
+  background-color: white;
   position: absolute;
   padding: 1em;
   display: none;
+  border-radius: 0.5rem;
 }
 
-.user-info.active {
+.user-info__logout.active {
   display: block;
   z-index: 10;
+
+  display: grid;
+  gap: 1rem;
 }
 
 .logout-btn {
@@ -143,7 +148,7 @@
 
 .login-button a {
   padding: 10px 20px;
-  background-color: white;
+  /* background-color: white; */
   color: black;
   text-decoration: none;
   border-radius: 5px;
@@ -152,4 +157,5 @@
 
 .login-button a:hover {
   background-color: rgb(0, 166, 125);
+  color: white;
 }

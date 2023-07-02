@@ -7,7 +7,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 
 import "./App.css";
 
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate, Navigate } from "react-router-dom";
 import { useGlobalContext } from "./AppContext/AppContext";
 import Product from "./Pages//Product/Product";
 import Cart from "./Pages/Cart/Cart";
@@ -20,12 +20,15 @@ import Footer from "./components/Footer/Footer";
 import SignUp from "./Pages/SignUp/SignUp";
 import Home from "./Pages/Home/Home";
 import Orders from "./Pages/Orders/Orders";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   const { setCheckout, cart } = useGlobalContext();
   const location = useLocation();
   const navigate = useNavigate();
   // console.log(location.pathname);
+
+  const isNotFoundPage = location.pathname === "*";
 
   useEffect(() => {
     if (
@@ -42,10 +45,12 @@ function App() {
 
   // console.log(cart);
 
+  console.log(location.pathname);
+
   return (
     <>
-      <Navbar />
-
+      {/* <Navbar /> */}
+      {!isNotFoundPage && <Navbar />}
       <Routes>
         <Route
           path="/login"
@@ -78,13 +83,23 @@ function App() {
         />
 
         <Route
+          path="/product/:id"
+          element={<Plant />}
+        />
+
+        <Route
           path="/cart"
           element={<Cart />}
         />
 
         <Route
-          path="/product/:id"
-          element={<Plant />}
+          path="*"
+          element={<Navigate to="/404" />}
+        />
+
+        <Route
+          path="/404"
+          element={<NotFound />}
         />
       </Routes>
 

@@ -14,7 +14,11 @@ function Navbar() {
 
   const [isUserInfo, setIsUserInfo] = useState(false);
 
-  if (location.pathname == "/login" || location.pathname == "/register") {
+  if (
+    location.pathname == "/login" ||
+    location.pathname == "/register" ||
+    location.pathname === "/404"
+  ) {
     return;
   }
 
@@ -137,8 +141,8 @@ function Navbar() {
                     <FaUserLarge />
                   </button>
 
-                  <div className={`user-info ${isUserInfo ? "active" : ""}`}>
-                    <p>{userInfo?.userName}</p>
+                  <div className={`user-info__logout ${isUserInfo ? "active" : ""}`}>
+                    <p>Username: {userInfo?.userName}</p>
                     <button
                       className="logout-btn"
                       onClick={() => {

@@ -63,12 +63,14 @@ function Cart() {
     return (
       <div className={`${CartCSS["no_item_in_cart"]} container`}>
         <p>No Item In Cart</p>
+        <Link to="/product">Buy Now</Link>
       </div>
     );
   }
 
   return (
     <div className={`${CartCSS["plant__wrapper"]} container`}>
+      <h2>Cart</h2>
       {plants.map((plant) => {
         if (cart[plant.id]?.itemCount !== 0) {
           return (
@@ -251,7 +253,9 @@ function Cart() {
 
       {getTotalAmount() ? (
         <div className={CartCSS["checkout"]}>
-          <p className={CartCSS["total_amount"]}>Total Amount: <span>₱{getTotalAmount()}</span></p>
+          <p className={CartCSS["total_amount"]}>
+            Total Amount: <span>₱{getTotalAmount()}</span>
+          </p>
           <button
             className={`btn btn-primary ${CartCSS["cart__checkout--btn"]}`}
             onClick={() => {
