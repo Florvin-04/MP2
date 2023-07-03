@@ -114,6 +114,7 @@
   padding: 1em;
   display: none;
   border-radius: 0.5rem;
+  transform: translateX(-50%);
 
   font-family: montserrat;
 }
