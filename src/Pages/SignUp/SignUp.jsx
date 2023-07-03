@@ -39,6 +39,8 @@ function SignUp() {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
 
+  const [formErrors, setFormErrors] = useState(null);
+
   // const schema = yup.object().shape({
   //   // firstName: yup.number().typeError('Age must be a number').required("First Name Required!"),
   //   email: yup.string().email().required("Email is Required"),
@@ -106,33 +108,42 @@ function SignUp() {
     const target = e.target;
     const { name, value, type, checked } = target;
 
+    setFormErrors(null)
+
     setFormState((prevState) => ({
       ...prevState,
       [name]: type === "checkbox" ? checked : value,
     }));
-
- 
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    let errors = {};
+    let isValidate = true;
 
     if (page !== 3) {
       setPage((prev) => prev + 1);
       return;
     }
 
+  
+
     if (formState.password !== formState.confirmPassword) {
-      // console.log("password Dont match");
-      return;
+      errors.passwordNotMatch = "Password do not match.";
+      isValidate = false;
     }
 
-    localStorage.setItem("userInfo", JSON.stringify(formState))
+    setFormErrors(errors);
 
-    setUserInfo(formState);
-    // console.log("Submit");
+    if (isValidate) {
+      localStorage.setItem("userInfo", JSON.stringify(formState));
 
-    navigate("/login");
+      setUserInfo(formState);
+      // console.log("Submit");
+
+      navigate("/login");
+    }
   }
 
   return (
@@ -401,6 +412,8 @@ function SignUp() {
                   </label>
 
                   {/* {errors.confirmPassword?.message} */}
+
+                  <span className="pass_not_match">{formErrors?.passwordNotMatch}</span>
                 </div>
               </div>
               <div className="btn">

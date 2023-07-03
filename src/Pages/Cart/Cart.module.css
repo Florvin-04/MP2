@@ -20,6 +20,16 @@
  text-align: center;
  font-size: 2rem;
  font-weight: 700;
+ font-family: monospace;
+ letter-spacing: .1rem;
+}
+
+.plant__wrapper > p:first-child {
+ text-align: center;
+ font-size: 2rem;
+ font-weight: 700;
+ font-family: monospace;
+ letter-spacing: .1rem;
 }
 
 .parentCartContainer {
@@ -46,7 +56,23 @@
   cursor: pointer;
 }
 .cart_item-container:hover {
-  background-color: rgb(215, 252, 215);
+  /* background-color: rgb(215, 252, 215); */
+}
+.view__product{
+  background-color: hsl(var(--neutral-green));
+  color: white;
+  font-weight: 600;
+  font-family: monospace;
+  /* letter-spacing: .1rem; */
+  text-decoration: none;
+  border-radius: .3rem;
+  padding: .5em 1em;
+}
+
+.view__product:hover{
+  /* background-color: hsl(var(--neutral-green)); */
+  color: white;
+
 }
 
 .cart_item-container:hover .removeItemToCart {
@@ -58,7 +84,7 @@
 
 .cart_item-container.active {
   background-color: rgb(215, 252, 215);
-  outline: 2px solid hsl(var(--neutral-green));
+  outline: 1px solid hsl(var(--neutral-green));
 }
 
 .cart__image--container > img {
@@ -80,12 +106,16 @@
   font-size: 2rem;
   color: hsl(var(--card-text-color));
   font-weight: 600;
+  font-family: monospace;
+  /* letter-spacing: .1rem; */
 }
 
 .plant_price {
   font-size: 1.5rem;
   color: hsl(var(--card-text-color));
   font-weight: 600;
+  font-family: monospace;
+  /* letter-spacing: .1rem; */
 }
 
 .handleChangeContainer {
@@ -132,18 +162,26 @@
   font-weight: 500;
   font-size: 1.1rem;
   margin-top: 0.3em;
+
+  font-family: monospace;
+  /* letter-spacing: .1rem; */
 }
 .sub_total span {
   font-weight: 700;
 }
 
 .checkout {
-  margin-top: 1rem;
+  margin-top: 2rem;
+  padding-block: 1em;
+
   display: flex;
-  /* outline: 1px solid red; */
+  /* border-top: 1px solid black; */
+  box-shadow: 0 -5px 5px -5px #333;  /* box */
   flex-direction: column;
   /* justify-content: space-between; */
-  /* background-color: red; */
+  background-color: #f2f3f4;
+  position: sticky;
+  bottom: .1rem;
 }
 
 .total_amount {
@@ -151,7 +189,7 @@
   color: hsl(var(--card-text-color));
   font-weight: 500;
   font-size: 1.4rem;
-  margin-top: 1em;
+  /* margin-top: 1em; */
 }
 
 .total_amount span {
@@ -170,6 +208,8 @@
 
 .no_item_in_cart p {
   font-weight: 600;
+  font-family: monospace;
+  /* letter-spacing: .1rem; */
 }
 
 .no_item_in_cart a {
@@ -180,20 +220,26 @@
   border-radius: 0.3rem;
   font-size: 0.7em;
   font-weight: 600;
+  font-family: monospace;
+  /* letter-spacing: .1rem; */
 }
 
 .cart__checkout--btn {
   /* text-align: center; */
+  
   display: flex;
   justify-content: center;
+  width: 18%;
   font-size: 1.2rem;
+
+  align-self: flex-end;
 }
 
 .no-selected-text-message {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 10rem;
+  /* height: 10rem; */
   font-size: 1.5rem;
   /* background-color: red; */
 }

@@ -46,16 +46,77 @@
   }
 }
 
-
-.featured_plant{
-    margin-top: 5rem;
+.content {
+  margin-top: 100px;
 }
 
-.featured_plants-title{
+#text-title {
+  text-align: start;
+  margin-bottom: 20px;
+  font-family: Montserrat;
+  font-size: 1.5rem;
+}
+
+#text-content {
+  font-family: Montserrat, sans-serif;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.center-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.shop-button {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured_plant {
+  margin-top: 5rem;
+}
+
+.featured_plants-title {
   text-align: center;
   text-transform: uppercase;
-  font-size: 3rem;
-  padding-top: 3em;
+  font-size: 2rem;
   padding-bottom: 1em;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
+  font-family: Montserrat;
+}
+
+.partners {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  font-family: Montserrat;
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+}
+
+.partner1,
+.partner2,
+.partner3 {
+  width: 250px;
+  height: auto;
+  margin-top: 20px;
+}
+
+.partner-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }

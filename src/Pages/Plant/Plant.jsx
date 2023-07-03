@@ -1,6 +1,9 @@
 import { useState, useRef } from "react";
 import "./Plant.css";
 import { Modal, Button } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+// import Button from "react-bootstrap/Button";
+
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useGlobalContext } from "../../AppContext/AppContext";
 import { PiArrowFatLeftFill } from "react-icons/pi";
@@ -22,6 +25,7 @@ function Plant() {
   const [quantity, setQuanity] = useState(INITIAL_VALUE);
   // const [buttonClicked, setButtonClicked] = useState(INITIAL_VALUE);
   const [showModal, setShowModal] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   function addPlant(e, id) {
     const target = e.target;
@@ -51,9 +55,14 @@ function Plant() {
 
     if (!loggedIn) {
       setShowModal(true);
-
       return;
     }
+
+    setShowAlert(true);
+
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 1000);
 
     setCart((prevData) => ({
       ...prevData,
@@ -74,6 +83,7 @@ function Plant() {
   return (
     <div>
       <Modal
+     
         size="sm"
         show={showModal}
         onHide={closeModal}
@@ -105,6 +115,27 @@ function Plant() {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      <Alert
+      className="container add_to_cart_alert"
+        show={showAlert}
+        variant="success"
+      >
+        <Alert.Heading>Item Added to cart</Alert.Heading>
+        {/* <p>
+          Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec
+          elit. Cras mattis consectetur purus sit amet fermentum.
+        </p> */}
+        <hr />
+        {/* <div className="d-flex justify-content-end">
+          <Button
+            onClick={() => setShowAlert(false)}
+            variant="outline-success"
+          >
+            Close me
+          </Button>
+        </div> */}
+      </Alert>
 
       <div className="container">
         <button
@@ -231,6 +262,7 @@ function Plant() {
                       </form>
 
                       <button
+                        // disabled="true"
                         className="add-item"
                         // form="override-cart-value_form"
                         onClick={() => {
@@ -276,7 +308,7 @@ function Plant() {
                     <button
                       className="add-to-cart--bnt"
                       form="override-cart-value_form"
-
+                      disabled={showAlert}
                       // onClick={() => addToCart(plant.id)}
                     >
                       <svg

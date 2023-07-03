@@ -119,7 +119,7 @@ function Orders() {
         ) : (
           <div className="no_orders_found">
             <p>No orders found.</p>
-            <NavLink to="/cart">Go to cart page</NavLink>
+            <NavLink to="/cart">Go to your cart</NavLink>
           </div>
         )}
       </div>

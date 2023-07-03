@@ -1,9 +1,12 @@
-.page-title{
+.page-title {
   text-align: center;
   font-size: 3rem;
   text-transform: uppercase;
   padding-block-end: 1em;
+  font-family: Montserrat;
   /* color: #06bf77; */
+
+  letter-spacing: 0.1rem;
 }
 
 .dropdown__category {

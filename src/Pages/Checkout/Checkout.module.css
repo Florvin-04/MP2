@@ -1,8 +1,9 @@
 .checkout__title {
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.3rem;
   padding-block: 1em;
   text-transform: uppercase;
+  font-family: Montserrat;
 }
 
 .checkout__modal__form {
@@ -80,6 +81,28 @@
   /* outline: 1px solid red; */
   color: red;
   font-size: 0.9rem;
+}
+
+.address__container{
+  font-family: Montserrat;
+  /* letter-spacing: .1rem; */
+}
+
+.delivery__address--info{
+  font-size: 1.1rem;
+  /* background-color: red; */
+}
+
+
+.change__address p{
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: .1rem;
+}
+
+.address__container button{
+  font-family: monospace;
+  /* letter-spacing: .1rem; */
 }
 
 .submit__address__form {
@@ -170,6 +193,8 @@
   font-size: 1.9rem;
   color: hsl(var(--card-text-color));
   font-weight: 600;
+  font-family: monospace;
+  letter-spacing: 0.1rem;
 }
 
 .item--price {
@@ -177,17 +202,23 @@
   justify-content: space-between;
   color: hsl(var(--card-text-color));
   font-weight: 600;
+  font-family: monospace;
+  /* letter-spacing: 0.1rem; */
   /* outline: 1px solid red; */
 }
 
 .category {
   color: hsl(var(--card-text-color));
+  font-family: monospace;
+  /* letter-spacing: .1rem; */
 }
 
 .checkout__subtotal {
   text-align: right;
   padding: 0.5em 1em;
   color: hsl(var(--card-text-color));
+  font-family: monospace;
+  /* letter-spacing: .1rem; */
   /* font-weight: 600; */
 }
 
@@ -202,6 +233,10 @@
   background-color: rgb(243, 243, 243);
   margin-top: 2rem;
   color: rgb(0, 0, 0, 0.55);
+
+  font-family: monospace;
+  /* font-family: Montserrat; */
+  /* letter-spacing: .1rem; */
 }
 
 .checkout__totalPayment {
@@ -217,6 +252,8 @@
   margin-top: 1rem;
   float: right;
 }
+
+
 
 @media (min-width: 800px) {
   .checkout__container--parent {

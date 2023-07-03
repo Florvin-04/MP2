@@ -70,7 +70,8 @@ function Cart() {
 
   return (
     <div className={`${CartCSS["plant__wrapper"]} container`}>
-      <h2>Cart</h2>
+      <h2>My Cart</h2>
+      {/* <p>Select an item you want to checkout</p> */}
       {plants.map((plant) => {
         if (cart[plant.id]?.itemCount !== 0) {
           return (
@@ -172,7 +173,7 @@ function Cart() {
 
                       <div>
                         <Link
-                          className="btn btn-primary"
+                          className={`${CartCSS["view__product"]}`}
                           to={`/product/${plant.id}`}
                         >
                           View Product
@@ -245,7 +246,7 @@ function Cart() {
                 </label>
               </div>
               <p className={CartCSS["sub_total"]}>
-                SubTotal: <span>₱{cart[plant.id].itemCount * plant.price}</span>
+                Subtotal: <span>₱{cart[plant.id].itemCount * plant.price}</span>
               </p>
             </div>
           );
@@ -267,7 +268,9 @@ function Cart() {
           </button>
         </div>
       ) : (
-        <p className={CartCSS["no-selected-text-message"]}>Select an item you want to checkout</p>
+        <div className={CartCSS["checkout"]}>
+          <p className={CartCSS["no-selected-text-message"]}>Select an item you want to checkout</p>
+        </div>
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { animateScroll as scroll } from "react-scroll";
+import { Link, useLocation, useNavigate, NavLink } from "react-router-dom";
+import { animateScroll as scroll, scroller } from "react-scroll";
 import { useGlobalContext } from "../../AppContext/AppContext";
 import logo from "/image/Tanim-logo.png";
 import "./Navbar.css";
@@ -22,8 +22,12 @@ function Navbar() {
     return;
   }
 
-  const scrollToFooter = () => {
-    scroll.scrollToBottom();
+  const scrollToAboutSection = () => {
+    scroller.scrollTo('about-us', {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart'
+    });
   };
 
   return (
@@ -78,18 +82,18 @@ function Navbar() {
               </li>
 
               <li className="about-us">
-                <Link
+                <a
                   className="nav-link"
-                  activeclass="active"
-                  // to="footer"
-                  spy="true"
-                  smooth="true"
-                  offset={-70}
-                  duration={500}
-                  onClick={scrollToFooter}
+                  // activeclass="active"
+                  href="/#about-us"
+                  // spy="true"
+                  // smooth="true"
+                  // offset={-70}
+                  // duration={500}
+                  // onClick={scrollToAboutSection}
                 >
                   <strong>About Us</strong>
-                </Link>
+                </a>
               </li>
 
               <li className="product">

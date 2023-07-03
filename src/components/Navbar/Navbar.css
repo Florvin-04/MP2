@@ -1,3 +1,8 @@
+.navbar-nav a {
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
 .navbar-brand img {
   width: 250px;
   height: auto;
@@ -109,6 +114,8 @@
   padding: 1em;
   display: none;
   border-radius: 0.5rem;
+
+  font-family: montserrat;
 }
 
 .user-info__logout.active {
@@ -120,8 +127,15 @@
 }
 
 .logout-btn {
-  background-color: red !important;
-  color: white;
+  color: hsl(var(--neutral-green)) !important;
+  /* color: white; */
+  border: 1.5px solid hsl(var(--neutral-green));
+}
+
+.logout-btn:hover {
+  background-color: hsl(var(--neutral-green)) !important;
+  color: white !important;
+  /* border: 1.5px solid hsl(var(--neutral-green)); */
 }
 
 .product a {

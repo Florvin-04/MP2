@@ -185,3 +185,7 @@ body {
 #prev-btn {
   background: #eeeeee;
 }
+
+.pass_not_match{
+  color: red;
+}

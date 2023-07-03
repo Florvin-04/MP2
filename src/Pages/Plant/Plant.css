@@ -39,6 +39,16 @@ button {
   cursor: pointer;
 }
 
+.add_to_cart_alert {
+  position: fixed;
+  width: 20%;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  /* opacity: .9; */
+}
+
 /* gobal style END */
 
 .plant__modal--buttons button:active {
@@ -133,14 +143,16 @@ button {
   text-transform: uppercase;
   font-weight: 600;
   color: hsl(var(--Primary-Orange));
-  font-size: 0.8rem;
+  font-size: 1rem;
+  letter-spacing: .1rem;
+  font-family: monospace;
 }
 
 .product__name {
   color: hsl(var(--card-text-color));
   font-weight: 700;
-
   font-size: 1.8rem;
+  font-family: monospace;
 }
 
 .product__star-rating {
@@ -156,13 +168,16 @@ height: 50px; */
 .product__description {
   color: hsl(var(--card-text-color));
   /* font-weight: 600; */
+  font-size: 1.1rem;
+  letter-spacing: .01rem;
+  font-family: Montserrat;
 }
 
 .discounted__price {
   color: hsl(var(--card-text-color));
   font-weight: 650;
   font-size: 1.7rem;
-
+  font-family: monospace;
   position: relative;
 
   /* outline: 1px solid red; */
@@ -264,6 +279,13 @@ height: 50px; */
   font-size: 1.1rem;
 
   position: relative;
+
+  font-family: monospace;
+}
+
+.add-to-cart--bnt:disabled {
+  /* background-color: red; */
+  cursor: not-allowed;
 }
 
 .add-to-cart--bnt:hover::after {

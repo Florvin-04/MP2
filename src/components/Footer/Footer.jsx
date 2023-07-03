@@ -19,18 +19,7 @@ function Footer() {
       <div className="container">
         <div className="row">
           <div className="col-lg-4 col-md-6">
-            <h4 id="about_us">
-              <strong>About Us</strong>
-            </h4>
-            <p id="footer_content">
-              Welcome to our website, your premier destination for exquisite exotic plants. At{" "}
-              <strong>TANIM</strong>, we are passionate about bringing the beauty and wonder of rare
-              and unique plant species right to your doorstep. We invite you to embark on a
-              botanical journey with us and explore the extraordinary world of exotic plants.
-              Whether you're looking to expand your plant collection, create a stunning indoor
-              oasis, or find a unique gift for a fellow plant lover, <strong>TANIM</strong> is your
-              ultimate source for the extraordinary.
-            </p>
+            <img src="image/Tanim-logo.png"></img>
           </div>
           <div className="col-lg-4 col-md-6">
             <h4 id="follow_us">
@@ -38,10 +27,7 @@ function Footer() {
             </h4>
             <ul className="social-media">
               <li>
-                <a
-                  href="#"
-                  id="facebook"
-                >
+                <a href="#" id="facebook">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="50"
@@ -56,10 +42,7 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  id="twitter"
-                >
+                <a href="#" id="twitter">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="50"
@@ -74,10 +57,7 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  id="instagram"
-                >
+                <a href="#" id="instagram">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="50"
@@ -103,10 +83,7 @@ function Footer() {
             <p id="footer_content">Email: Tanim_RealExotics@gmail.com</p>
             <p id="footer_content">Phone: 123-456-7890</p>
           </div>
-          <div
-            className="col-lg-12 col-md-12 mt-4 text-center"
-            id="copy"
-          >
+          <div className="col-lg-12 col-md-12 text-center" id="copy">
             <p>© 2023 T A N I M. All rights reserved.</p>
           </div>
         </div>

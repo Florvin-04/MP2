@@ -37,7 +37,7 @@ function Product() {
             <input
               className={[productCSS["filterName"]]}
               type="text"
-              placeholder="search"
+              placeholder="Search"
               name="plant"
               value={filterByName}
               onChange={(e) => setFilterByName(e.target.value)}

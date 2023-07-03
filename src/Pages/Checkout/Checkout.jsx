@@ -209,11 +209,11 @@ function Checkout() {
         </form>
       </dialog>
 
-      <div className="address__container">
+      <div className={checkoutCSS["address__container"]}>
         <div className={checkoutCSS["change__address"]}>
           <p>Address Delivery</p>
           <button
-          className="btn btn-primary"
+            className="btn btn-primary"
             onClick={() => {
               modalRef.current.showModal();
             }}
@@ -223,7 +223,7 @@ function Checkout() {
         </div>
 
         {true ? (
-          <div>
+          <div className={checkoutCSS["delivery__address--info"]}>
             <p className="person__name">
               {userData?.firstName} {userData?.lastName} | {userData?.phoneNumber}
             </p>
@@ -270,7 +270,7 @@ function Checkout() {
                       </div>
                     </div>
                     <p className={checkoutCSS["checkout__subtotal"]}>
-                      SubTotal: <span>₱{cart[plant.id].itemCount * plant.price}</span>
+                      Subtotal: <span>₱{cart[plant.id].itemCount * plant.price}</span>
                     </p>
                   </div>
                 );

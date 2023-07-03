@@ -1,11 +1,15 @@
-
 .card {
   /* border: 1px solid hsl(var(--neutral-green)); */
   /* cursor: pointer; */
+
+  /* background-color: transparent; */
+  border: 1px solid transparent;
+
+ transition: transform .1s ease-in-out;
 }
 
 .card:hover {
-  /* background-color: hsl(157, 80%, 71%); */
+  transform: scale(1.1);
 }
 
 .card-img-top {
@@ -22,6 +26,7 @@
   font-weight: 600;
   font-size: 1.5rem;
   margin-bottom: 0;
+  font-family: monospace;
 }
 
 .star-rating {
@@ -29,8 +34,8 @@
 }
 .star-rating svg {
   fill: gold;
-width: 27px;
-height: 50px;
+  width: 27px;
+  height: 50px;
 }
 
 .card-price {
@@ -38,6 +43,7 @@ height: 50px;
   color: hsl(var(--card-text-color));
   font-weight: 700;
   font-size: 1.3rem;
+  font-family: monospace;
 }
 
 .card-description {
