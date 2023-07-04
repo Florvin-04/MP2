@@ -1,3 +1,2 @@
 # MP2
-
-https://plant-mp2.netlify.app
+[Live Website](https://plant-mp2.netlify.app)
