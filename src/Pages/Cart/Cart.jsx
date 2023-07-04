@@ -259,7 +259,7 @@ function Cart() {
             Total Amount: <span>₱{getTotalAmount()}</span>
           </p>
           <button
-            className={`btn btn-primary ${CartCSS["cart__checkout--btn"]}`}
+            className={`${CartCSS["cart__checkout--btn"]}`}
             onClick={() => {
               navigate("/checkout");
             }}

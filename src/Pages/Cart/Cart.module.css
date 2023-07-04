@@ -163,7 +163,7 @@
   margin-top: 0.3em;
 
   font-family: monospace;
- 
+
   /* letter-spacing: .1rem; */
 }
 .sub_total span {
@@ -259,6 +259,14 @@
   border: 2px solid hsl(var(--neutral-green));
   color: white;
   font-weight: 600;
+}
+
+.cart__checkout--btn {
+  background-color: hsl(var(--neutral-green));
+  color: white;
+  font-weight: 600;
+  font-family: monospace;
+  /* letter-spacing: .1rem; */
 }
 
 @media (min-width: 600px) {
