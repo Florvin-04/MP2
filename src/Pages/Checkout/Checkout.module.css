@@ -83,25 +83,28 @@
   font-size: 0.9rem;
 }
 
-.address__container{
+.address__container {
   font-family: Montserrat;
   /* letter-spacing: .1rem; */
 }
 
-.delivery__address--info{
+.delivery__address--info {
   font-size: 1.1rem;
   /* background-color: red; */
 }
 
-
-.change__address p{
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: .1rem;
+.change__address p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
 }
 
-.address__container button{
+.address__container button {
   font-family: monospace;
+  background-color: hsl(var(--neutral-green));
+  color: white;
+  font-weight: 600;
+  padding: .3em .5em;
   /* letter-spacing: .1rem; */
 }
 
@@ -241,6 +244,7 @@
 
 .checkout__totalPayment {
   margin-top: 1.5rem;
+  
 }
 
 .checkout__totalAmount > p {
@@ -251,9 +255,12 @@
 .checkout_submit_btn {
   margin-top: 1rem;
   float: right;
+  font-family: monospace;
+  background-color: hsl(var(--neutral-green));
+  color: white;
+  font-weight: 600;
+  padding: .3em .5em;
 }
-
-
 
 @media (min-width: 800px) {
   .checkout__container--parent {

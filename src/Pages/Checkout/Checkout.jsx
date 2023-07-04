@@ -104,7 +104,7 @@ function Checkout() {
     });
 
     setCheckout([]);
-    navigate("/product");
+    navigate("/orders");
   }
 
   return (
@@ -213,7 +213,7 @@ function Checkout() {
         <div className={checkoutCSS["change__address"]}>
           <p>Address Delivery</p>
           <button
-            className="btn btn-primary"
+            // className="btn btn-primary"
             onClick={() => {
               modalRef.current.showModal();
             }}
@@ -302,7 +302,7 @@ function Checkout() {
           </p>
           <button
             disabled={checkout.length === 0 ? true : false}
-            className={`btn btn-primary ${checkoutCSS["checkout_submit_btn"]}`}
+            className={` ${checkoutCSS["checkout_submit_btn"]}`}
             onClick={submitOrder}
           >
             Place Order

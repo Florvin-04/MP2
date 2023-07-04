@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import {Link} from 'react-router-dom'
 
 import { useLocation } from "react-router-dom";
 
@@ -19,7 +20,7 @@ function Footer() {
       <div className="container">
         <div className="row">
           <div className="col-lg-4 col-md-6">
-            <img src="image/Tanim-logo.png"></img>
+            <img src="/image/Tanim-logo.png"></img>
           </div>
           <div className="col-lg-4 col-md-6">
             <h4 id="follow_us">

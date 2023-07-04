@@ -37,16 +37,16 @@ function Navbar() {
           className="container"
           id="nav"
         >
-          <a
+          <Link
             className="navbar-brand"
-            href="#"
+            to="/"
             id="logo_pic"
           >
             <img
               src={logo}
               alt="Logo"
             />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"

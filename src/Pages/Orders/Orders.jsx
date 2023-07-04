@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Link, NavLink } from "react-router-dom";
 
 import { useGlobalContext } from "../../AppContext/AppContext";
+import Loading from "../../components/Loading/Loading";
 
 function Orders() {
   const { orders, plants } = useGlobalContext();
@@ -25,7 +26,7 @@ function Orders() {
 
         if (matchingProduct) {
           const uniqueId = uuidv4();
-          updatedItemOrder.push({
+          updatedItemOrder.unshift({
             orderId: uniqueId,
             id: matchingProduct.id,
             name: matchingProduct.name,
@@ -67,7 +68,7 @@ function Orders() {
       <h2 className="orders__title">Orders</h2>
       <div className="order__items--wrapper">
         {isLoading ? (
-          <p>Loading...</p> // Render a loading state
+          <Loading /> // Render a loading state
         ) : itemOrders.length > 0 ? (
           itemOrders.map((item) => (
             <div key={item.orderId}>

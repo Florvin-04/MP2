@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Home.css";
+import { Link } from "react-router-dom";
 import { useGlobalContext } from "../../AppContext/AppContext";
 import PlantCard from "../../components/PlantCard/PlantCard";
 
@@ -75,12 +76,12 @@ function Home() {
               Discover the magic today
             </p>
             <div className="col-md-3">
-              <a
-                href="#"
+              <Link
+                to="/product"
                 className="btn btn-success shop-button"
               >
                 Shop Now!
-              </a>
+              </Link>
             </div>
           </div>
           <div className="col-md-6">
@@ -93,7 +94,10 @@ function Home() {
         </div>
       </div>
 
-      <div className="container" id="about-us">
+      <div
+        className="container"
+        id="about-us"
+      >
         <div className="row">
           <div className="col-md-6">
             <img
@@ -128,12 +132,12 @@ function Home() {
               Happy planting! <br />
             </p>
             <div className="col-md-3">
-              <a
-                href="#"
+              <Link
+                to="/product"
                 className="btn btn-success shop-button"
               >
                 Shop Now!
-              </a>
+              </Link>
             </div>
           </div>
         </div>
