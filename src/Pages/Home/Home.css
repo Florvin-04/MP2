@@ -17,12 +17,11 @@
   color: black;
   font-family: monospace;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: 0.1em solid orange; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: 0.1em; /* Adjust as needed */
   animation: typing 3.5s steps(32, end), blink-caret 0.5s step-end infinite;
-  font-size: 150%;
+  font-size: 2rem;
 }
 
 /* MIDDLE CONTENT - The typing effect  */
@@ -106,12 +105,27 @@
   letter-spacing: 0.1rem;
 }
 
-.partner1,
-.partner2,
+.partner2 {
+  width: 200px;
+  height: auto;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
 .partner3 {
+  margin-left: 80px;
   width: 250px;
   height: auto;
   margin-top: 20px;
+  margin-left: 100px;
+}
+
+.partner1 {
+  width: 150px;
+  height: auto;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .partner-logo {

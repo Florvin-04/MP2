@@ -119,6 +119,12 @@
   font-family: montserrat;
 }
 
+.user-info__logout > p {
+  text-align: center;
+
+  /* width:; */
+}
+
 .user-info__logout.active {
   display: block;
   z-index: 10;

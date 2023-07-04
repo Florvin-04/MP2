@@ -23,10 +23,10 @@ function Navbar() {
   }
 
   const scrollToAboutSection = () => {
-    scroller.scrollTo('about-us', {
+    scroller.scrollTo("about-us", {
       duration: 800,
       delay: 0,
-      smooth: 'easeInOutQuart'
+      smooth: "easeInOutQuart",
     });
   };
 
@@ -146,7 +146,7 @@ function Navbar() {
                   </button>
 
                   <div className={`user-info__logout ${isUserInfo ? "active" : ""}`}>
-                    <p>Username: {userInfo?.userName}</p>
+                    <p>{userInfo?.userName}</p>
                     <button
                       className="logout-btn"
                       onClick={() => {

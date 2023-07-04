@@ -22,7 +22,7 @@
   /* background-color: hsl(var(--Primary-100)) ;
   border-color: hsl(var(--Primary-100));
   color: hsl(var(--Primary-300)); */
-  background-color: #06bf77;
+  background-color: #5baa8c;
 
   cursor: pointer;
   border-radius: 0.5rem;
@@ -37,7 +37,7 @@
   background-color: hsl(var(--Primary-100));
   border-color: hsl(var(--Primary-100));
   color: hsl(var(--Primary-300)); */
-  background-color: #06bf77;
+  background-color: #5baa8c;
   cursor: pointer;
   border-radius: 0.5rem;
   position: absolute;
@@ -87,6 +87,10 @@
   color: white;
   /* font-weight: 600; */
   letter-spacing: 0.01rem;
+}
+.category__list--item:hover{
+  /* background-color: hsl(var(--neutral-green), .5); */
+ 
 }
 
 .no-plant-found {

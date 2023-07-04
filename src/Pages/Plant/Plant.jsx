@@ -83,7 +83,6 @@ function Plant() {
   return (
     <div>
       <Modal
-     
         size="sm"
         show={showModal}
         onHide={closeModal}
@@ -117,7 +116,7 @@ function Plant() {
       </Modal>
 
       <Alert
-      className="container add_to_cart_alert"
+        className="container add_to_cart_alert"
         show={showAlert}
         variant="success"
       >
@@ -208,7 +207,7 @@ function Plant() {
                       ₱{plant.price}
                       {/* <span className="percentage-off">50%</span> */}
                     </p>
-                    <p className="actual__price">₱250.00</p>
+                    <p className="actual__price">₱{plant.price / 0.8}</p>
                   </div>
 
                   <div className="add-to-cart--container">
