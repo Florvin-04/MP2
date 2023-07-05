@@ -4,7 +4,6 @@
   --bg-light: #fff;
 }
 
-
 .portal {
   display: grid;
   place-items: center;
@@ -190,12 +189,11 @@ button {
   color: red;
 }
 
-.forgot-keepMeLogIn{
+.forgot-keepMeLogIn {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
 }
-.forgot-keepMeLogIn span{
- 
-  margin-left: .5rem;
+.forgot-keepMeLogIn span {
+  margin-left: 0.5rem;
 }

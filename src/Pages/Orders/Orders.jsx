@@ -35,6 +35,8 @@ function Orders() {
             address: order.address,
             quantity: order.itemCount,
             phoneNumber: order.phoneNumber,
+            firstName: order.firstName,
+            lastName: order.lastName,
           });
         }
       }
@@ -106,13 +108,19 @@ function Orders() {
                   </div>
                 </div>
                 <div className="order__item--status--address">
-                  <p className="order__item--address">
-                    Delivery Address:{" "}
-                    <span>
-                      {item.address} | {item.phoneNumber} | Cash On Delivery
-                    </span>
+                  <p>
+                    Contact Person:
+                    <span> {item.firstName} {item.lastName}</span>
                   </p>
-                  <div className="order__item--status">Status: Pending</div>
+                  <div>
+                    <p className="order__item--address">
+                      Delivery Address:{" "}
+                      <span>
+                        {item.address} | {item.phoneNumber} | Cash On Delivery
+                      </span>
+                    </p>
+                    <div className="order__item--status">Status: Pending</div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -196,14 +196,6 @@ export const AppProvider = ({ children }) => {
         setUserInfo,
         orders,
         setOrders,
-
-        // setSearchCountry,
-        // searchByRegion,
-        // setSearchByRegion,
-        // loading,
-        // setLoading,
-        // toggle,
-        // setToggle,
       }}
     >
       {children}

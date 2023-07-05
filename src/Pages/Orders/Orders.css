@@ -112,7 +112,7 @@
 
   padding-inline: 0.5em;
 
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   align-items: center;
 
@@ -120,6 +120,19 @@
   gap: 1rem;
 
   font-family: monospace;
+}
+
+.order__item--status--address > p > span {
+  font-weight: 600;
+}
+
+.order__item--status--address > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .order__item--address {

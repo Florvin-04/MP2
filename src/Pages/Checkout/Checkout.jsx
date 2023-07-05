@@ -8,7 +8,6 @@ import { useGlobalContext } from "../../AppContext/AppContext";
 import { forEach } from "lodash";
 
 function Checkout() {
-  const navigate = useNavigate();
   const {
     plants,
     cart,
@@ -20,7 +19,10 @@ function Checkout() {
     orders,
     setOrders,
   } = useGlobalContext();
+
   const modalRef = useRef();
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({
     firstName: userInfo.firstName,
     lastName: userInfo.lastName,
@@ -85,6 +87,8 @@ function Checkout() {
             address: userData.address,
             phoneNumber: userData.phoneNumber,
             itemCount: cart[plant.id].itemCount,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
           },
         ]);
 
