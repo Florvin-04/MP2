@@ -109,7 +109,7 @@ function Orders() {
                   <p className="order__item--address">
                     Delivery Address:{" "}
                     <span>
-                      {item.address} | {item.phoneNumber}
+                      {item.address} | {item.phoneNumber} | Cash On Delivery
                     </span>
                   </p>
                   <div className="order__item--status">Status: Pending</div>

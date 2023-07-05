@@ -277,8 +277,6 @@ function Checkout() {
               }
             })
           )}
-
-          {}
         </div>
 
         <div className={checkoutCSS["checkout__totalAmount"]}>
@@ -292,6 +290,12 @@ function Checkout() {
             Shipping fee subtotal:
             <span>
               <strong>Free</strong>
+            </span>
+          </p>
+          <p>
+            Shipping method:
+            <span>
+              <strong>Cash On Delivery</strong>
             </span>
           </p>
           <p className={checkoutCSS["checkout__totalPayment"]}>
